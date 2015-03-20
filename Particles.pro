@@ -208,7 +208,8 @@ SOURCES += main.cpp\
     libs/cocos2d/cocos/deprecated/CCDictionary.cpp \
     libs/cocos2d/cocos/deprecated/CCNotificationCenter.cpp \
     libs/cocos2d/cocos/deprecated/CCSet.cpp \
-    libs/cocos2d/cocos/deprecated/CCString.cpp
+    libs/cocos2d/cocos/deprecated/CCString.cpp \
+    libs/cocos2d/cocos/platform/desktop/CCGLViewImpl-desktop.cpp
 
 HEADERS  += mainwindow.h \
     libs/jsoncpp/src/lib_json/json_batchallocator.h \
@@ -438,7 +439,9 @@ HEADERS  += mainwindow.h \
     libs/cocos2d/cocos/deprecated/CCSet.h \
     libs/cocos2d/cocos/deprecated/CCString.h \
     libs/cocos2d/external/glfw3/include/mac/glfw3.h \
-    libs/cocos2d/external/glfw3/include/mac/glfw3native.h
+    libs/cocos2d/external/glfw3/include/mac/glfw3native.h \
+    CocosBridge/CocosInterface.h \
+    libs/cocos2d/cocos/platform/desktop/CCGLViewImpl-desktop.h
 
 FORMS    += mainwindow.ui
 
@@ -540,4 +543,5 @@ OBJECTIVE_SOURCES += \
     libs/cocos2d/cocos/platform/mac/CCApplication-mac.mm \
     libs/cocos2d/cocos/platform/mac/CCCommon-mac.mm \
     libs/cocos2d/cocos/platform/mac/CCDevice-mac.mm \
-    libs/cocos2d/cocos/base/CCUserDefault-apple.mm
+    libs/cocos2d/cocos/base/CCUserDefault-apple.mm \
+    CocosBridge/CocosInterface.mm
