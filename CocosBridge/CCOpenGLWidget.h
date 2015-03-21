@@ -14,6 +14,9 @@ class CCOpenGLWidget : public QOpenGLWidget
         explicit CCOpenGLWidget(QWidget *parent = 0);
         ~CCOpenGLWidget();
 
+signals:
+    void signalInitialized();
+
     protected:
         void initializeGL() override;
         void paintGL() override;

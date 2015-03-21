@@ -67,16 +67,6 @@ bool ApplicationQt::applicationDidFinishLaunching()
         // set FPS. the default value is 1.0/60 if you don't call this
         director->setAnimationInterval(1.0 / 60);
 
-        // create a scene. it's an autorelease object
-        auto scene = Scene::create();
-        auto label = Label::createWithSystemFont("", "Helvetica", 120);
-        label->setString("Hello World");
-        label->setPosition(scene->getContentSize()*0.5f);
-        scene->addChild(label);
-
-        // run
-        director->runWithScene(scene);
-
         return true;
 }
 

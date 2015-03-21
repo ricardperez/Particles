@@ -212,7 +212,10 @@ SOURCES += main.cpp\
 #    libs/cocos2d/cocos/platform/desktop/CCGLViewImpl-desktop.cpp \
     CocosBridge/CCGLViewImpl-Qt.cpp \
     CocosBridge/CCOpenGLWidget.cpp \
-    CocosBridge/CCApplication-Qt.cpp
+    CocosBridge/CCApplication-Qt.cpp \
+    Scene/particlesscene.cpp \
+    Controller/particlecontroller.cpp \
+    Controller/backgroundimagecontroller.cpp
 
 HEADERS  += mainwindow.h \
     libs/jsoncpp/src/lib_json/json_batchallocator.h \
@@ -446,7 +449,10 @@ HEADERS  += mainwindow.h \
     libs/cocos2d/cocos/platform/desktop/CCGLViewImpl-desktop.h \
     CocosBridge/CCGLViewImpl-Qt.h \
     CocosBridge/CCOpenGLWidget.h \
-    CocosBridge/CCApplication-Qt.h
+    CocosBridge/CCApplication-Qt.h \
+    Scene/particlesscene.h \
+    Controller/particlecontroller.h \
+    Controller/backgroundimagecontroller.h
 
 FORMS    += mainwindow.ui
 

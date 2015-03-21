@@ -3,6 +3,17 @@
 
 #include <QMainWindow>
 
+namespace MelonGames
+{
+namespace Particles
+{
+
+class ParticlesScene;
+class BackgroundImageController;
+
+}
+}
+
 namespace Ui {
 class MainWindow;
 }
@@ -16,14 +27,23 @@ public:
     ~MainWindow();
 
 private slots:
+    void onOpenGLReady();
     void on_expandEditorButton_clicked();
 
+    void on_expandOptionsButton_clicked();
+
 private:
-    void updateExpanded();
+    void updateScrollExpanded();
+    void updateOptionsExpanded();
+    void initBackgroundImageController();
 
 private:
     Ui::MainWindow *ui;
     bool scrollExpanded;
+    bool optionsExpanded;
+
+    MelonGames::Particles::ParticlesScene* scene;
+    MelonGames::Particles::BackgroundImageController* backgroundImageController;
 };
 
 #endif // MAINWINDOW_H

@@ -36,6 +36,8 @@ void CCOpenGLWidget::initializeGL()
     ApplicationQt* application = new ApplicationQt();
     application->applicationDidFinishLaunching();
 
+    emit signalInitialized();
+
     startTimer(16.6, Qt::CoarseTimer);
 }
 
