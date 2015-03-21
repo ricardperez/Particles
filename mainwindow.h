@@ -10,6 +10,7 @@ namespace Particles
 
 class ParticlesScene;
 class BackgroundImageController;
+class ParticleController;
 
 }
 }
@@ -36,6 +37,7 @@ private:
     void updateScrollExpanded();
     void updateOptionsExpanded();
     void initBackgroundImageController();
+    void initParticleController();
 
 private:
     Ui::MainWindow *ui;
@@ -44,6 +46,7 @@ private:
 
     MelonGames::Particles::ParticlesScene* scene;
     MelonGames::Particles::BackgroundImageController* backgroundImageController;
+    MelonGames::Particles::ParticleController* particleController;
 };
 
 #endif // MAINWINDOW_H

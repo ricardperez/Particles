@@ -69,5 +69,10 @@ void ParticlesScene::setBackgroundImage(const std::string& imagePath)
     }
 }
 
+cocos2d::ParticleSystemQuad* ParticlesScene::getParticleSystem()
+{
+    return particleSystem;
+}
+
 }
 }

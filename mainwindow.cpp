@@ -3,6 +3,7 @@
 
 #include "Scene/particlesscene.h"
 #include "Controller/backgroundimagecontroller.h"
+#include "Controller/particlecontroller.h"
 #include "base/CCDirector.h"
 
 #include <QDebug>
@@ -13,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
   , scrollExpanded(true)
   , scene(nullptr)
   , optionsExpanded(false)
+  , backgroundImageController(nullptr)
+  , particleController(nullptr)
 {
     ui->setupUi(this);
 
@@ -25,6 +28,9 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+
+    delete particleController;
+    delete backgroundImageController;
 }
 
 void MainWindow::onOpenGLReady()
@@ -33,6 +39,7 @@ void MainWindow::onOpenGLReady()
     cocos2d::Director::getInstance()->runWithScene(scene);
 
     initBackgroundImageController();
+    initParticleController();
 }
 
 void MainWindow::on_expandEditorButton_clicked()
@@ -66,6 +73,14 @@ void MainWindow::initBackgroundImageController()
     backgroundImageController->setChangeImageButton(ui->backgroundImageSelectButton);
     backgroundImageController->setImageNameLabel(ui->backgroundImageNameLabel);
     backgroundImageController->update();
+}
+
+void MainWindow::initParticleController()
+{
+    particleController = new MelonGames::Particles::ParticleController();
+    particleController->setParticlesScene(scene);
+    particleController->setUIMaxParticles(ui->maxParticlesFrame);
+    particleController->setUILifespan(ui->lifespanFrame);
 }
 
 void MainWindow::on_expandOptionsButton_clicked()

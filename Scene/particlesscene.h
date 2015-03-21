@@ -22,6 +22,8 @@ public:
     void clearBackgroundImage();
     void setBackgroundImage(const std::string& imagePath);
 
+    cocos2d::ParticleSystemQuad* getParticleSystem();
+
 private:
     ParticlesScene();
     ~ParticlesScene();

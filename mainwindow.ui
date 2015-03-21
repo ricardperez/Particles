@@ -144,7 +144,7 @@
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_2">
               <item>
-               <widget class="QFrame" name="frame_4">
+               <widget class="QFrame" name="maxParticlesFrame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -163,7 +163,7 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <widget class="QSpinBox" name="spinBox">
+                <widget class="QSpinBox" name="spinbox">
                  <property name="geometry">
                   <rect>
                    <x>220</x>
@@ -171,6 +171,9 @@
                    <width>71</width>
                    <height>24</height>
                   </rect>
+                 </property>
+                 <property name="maximum">
+                  <number>1000</number>
                  </property>
                 </widget>
                 <widget class="QLabel" name="label">
@@ -183,10 +186,10 @@
                   </rect>
                  </property>
                  <property name="text">
-                  <string>Max Particles</string>
+                  <string>Max particles</string>
                  </property>
                 </widget>
-                <widget class="QSlider" name="horizontalSlider">
+                <widget class="QSlider" name="slider">
                  <property name="geometry">
                   <rect>
                    <x>0</x>
@@ -195,6 +198,9 @@
                    <height>22</height>
                   </rect>
                  </property>
+                 <property name="maximum">
+                  <number>1000</number>
+                 </property>
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -202,7 +208,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_5">
+               <widget class="QFrame" name="lifespanFrame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -221,7 +227,7 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <widget class="QSpinBox" name="spinBox_2">
+                <widget class="QSpinBox" name="spinbox_2">
                  <property name="geometry">
                   <rect>
                    <x>220</x>
@@ -241,10 +247,10 @@
                   </rect>
                  </property>
                  <property name="text">
-                  <string>Max Particles</string>
+                  <string>Lifespan</string>
                  </property>
                 </widget>
-                <widget class="QSlider" name="horizontalSlider_2">
+                <widget class="QSlider" name="slider_2">
                  <property name="geometry">
                   <rect>
                    <x>0</x>
@@ -260,7 +266,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_6">
+               <widget class="QFrame" name="lifespanVarFrame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -279,7 +285,7 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <widget class="QSpinBox" name="spinBox_5">
+                <widget class="QSpinBox" name="spinbox_3">
                  <property name="geometry">
                   <rect>
                    <x>220</x>
@@ -289,7 +295,7 @@
                   </rect>
                  </property>
                 </widget>
-                <widget class="QLabel" name="label_5">
+                <widget class="QLabel" name="label_4">
                  <property name="geometry">
                   <rect>
                    <x>0</x>
@@ -299,10 +305,10 @@
                   </rect>
                  </property>
                  <property name="text">
-                  <string>Max Particles</string>
+                  <string>Lifespan var</string>
                  </property>
                 </widget>
-                <widget class="QSlider" name="horizontalSlider_5">
+                <widget class="QSlider" name="slider_3">
                  <property name="geometry">
                   <rect>
                    <x>0</x>
@@ -318,7 +324,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_9">
+               <widget class="QFrame" name="startSizeFrame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -357,7 +363,7 @@
                   </rect>
                  </property>
                  <property name="text">
-                  <string>Max Particles</string>
+                  <string>Start size</string>
                  </property>
                 </widget>
                 <widget class="QSlider" name="horizontalSlider_8">
@@ -376,7 +382,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_7">
+               <widget class="QFrame" name="startSizeVarFrame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -415,7 +421,7 @@
                   </rect>
                  </property>
                  <property name="text">
-                  <string>Max Particles</string>
+                  <string>Start size var</string>
                  </property>
                 </widget>
                 <widget class="QSlider" name="horizontalSlider_6">
@@ -434,7 +440,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_8">
+               <widget class="QFrame" name="finishSizeFrame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -473,7 +479,7 @@
                   </rect>
                  </property>
                  <property name="text">
-                  <string>Max Particles</string>
+                  <string>Finish size</string>
                  </property>
                 </widget>
                 <widget class="QSlider" name="horizontalSlider_7">
@@ -492,7 +498,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_14">
+               <widget class="QFrame" name="finishSizeVarFrame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -531,7 +537,7 @@
                   </rect>
                  </property>
                  <property name="text">
-                  <string>Max Particles</string>
+                  <string>Finish size var</string>
                  </property>
                 </widget>
                 <widget class="QSlider" name="horizontalSlider_19">
@@ -550,7 +556,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_10">
+               <widget class="QFrame" name="emitionAngleFrame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -589,7 +595,7 @@
                   </rect>
                  </property>
                  <property name="text">
-                  <string>Max Particles</string>
+                  <string>Emition angle</string>
                  </property>
                 </widget>
                 <widget class="QSlider" name="horizontalSlider_15">
@@ -608,7 +614,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_11">
+               <widget class="QFrame" name="emitionAngleVarFrame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -647,7 +653,7 @@
                   </rect>
                  </property>
                  <property name="text">
-                  <string>Max Particles</string>
+                  <string>Emition angle var</string>
                  </property>
                 </widget>
                 <widget class="QSlider" name="horizontalSlider_16">
@@ -666,7 +672,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_15">
+               <widget class="QFrame" name="rotationStartFrame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -705,7 +711,7 @@
                   </rect>
                  </property>
                  <property name="text">
-                  <string>Max Particles</string>
+                  <string>Rotation start</string>
                  </property>
                 </widget>
                 <widget class="QSlider" name="horizontalSlider_20">
@@ -724,7 +730,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_12">
+               <widget class="QFrame" name="rotationStartVarFrame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -763,7 +769,7 @@
                   </rect>
                  </property>
                  <property name="text">
-                  <string>Max Particles</string>
+                  <string>Rotation start var</string>
                  </property>
                 </widget>
                 <widget class="QSlider" name="horizontalSlider_17">
@@ -782,7 +788,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_13">
+               <widget class="QFrame" name="rotationEndFrame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -821,7 +827,7 @@
                   </rect>
                  </property>
                  <property name="text">
-                  <string>Max Particles</string>
+                  <string>Rotation end</string>
                  </property>
                 </widget>
                 <widget class="QSlider" name="horizontalSlider_18">
@@ -840,7 +846,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_16">
+               <widget class="QFrame" name="rotationEndVarFrame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -879,7 +885,7 @@
                   </rect>
                  </property>
                  <property name="text">
-                  <string>Max Particles</string>
+                  <string>Rotation end var</string>
                  </property>
                 </widget>
                 <widget class="QSlider" name="horizontalSlider_21">
@@ -911,19 +917,19 @@
                </spacer>
               </item>
              </layout>
-             <zorder>frame_4</zorder>
-             <zorder>frame_5</zorder>
-             <zorder>frame_6</zorder>
-             <zorder>frame_7</zorder>
-             <zorder>frame_8</zorder>
-             <zorder>frame_9</zorder>
-             <zorder>frame_10</zorder>
-             <zorder>frame_11</zorder>
-             <zorder>frame_12</zorder>
-             <zorder>frame_13</zorder>
-             <zorder>frame_14</zorder>
-             <zorder>frame_15</zorder>
-             <zorder>frame_16</zorder>
+             <zorder>maxParticlesFrame</zorder>
+             <zorder>lifespanFrame</zorder>
+             <zorder>lifespanVarFrame</zorder>
+             <zorder>startSizeVarFrame</zorder>
+             <zorder>finishSizeFrame</zorder>
+             <zorder>startSizeFrame</zorder>
+             <zorder>emitionAngleFrame</zorder>
+             <zorder>emitionAngleVarFrame</zorder>
+             <zorder>rotationStartVarFrame</zorder>
+             <zorder>rotationEndFrame</zorder>
+             <zorder>finishSizeVarFrame</zorder>
+             <zorder>rotationStartFrame</zorder>
+             <zorder>rotationEndVarFrame</zorder>
              <zorder>verticalSpacer_2</zorder>
             </widget>
            </item>
@@ -1221,6 +1227,15 @@
     </item>
    </layout>
   </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -1231,15 +1246,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
