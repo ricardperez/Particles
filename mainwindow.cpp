@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "CocosBridge/CocosInterface.h"
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -12,10 +11,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     updateExpanded();
-
-    auto* cocosInterface = new MelonGames::Particles::CocosInterface();
-    cocosInterface->setup(ui->openGLWidget);
-    delete cocosInterface;
 }
 
 MainWindow::~MainWindow()

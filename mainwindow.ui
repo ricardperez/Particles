@@ -886,7 +886,6 @@
              <zorder>frame_4</zorder>
              <zorder>frame_5</zorder>
              <zorder>frame_6</zorder>
-             <zorder>label_5</zorder>
              <zorder>frame_7</zorder>
              <zorder>frame_8</zorder>
              <zorder>frame_9</zorder>
@@ -948,8 +947,6 @@
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
-             <zorder>frame</zorder>
-             <zorder>frame</zorder>
             </widget>
            </item>
            <item>
@@ -989,7 +986,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QOpenGLWidget" name="openGLWidget"/>
+     <widget class="MelonGames::Particles::CCOpenGLWidget" name="openGLWidget"/>
     </item>
    </layout>
   </widget>
@@ -1014,6 +1011,13 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>MelonGames::Particles::CCOpenGLWidget</class>
+   <extends>QOpenGLWidget</extends>
+   <header>CocosBridge/CCOpenGLWidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -209,7 +209,10 @@ SOURCES += main.cpp\
     libs/cocos2d/cocos/deprecated/CCNotificationCenter.cpp \
     libs/cocos2d/cocos/deprecated/CCSet.cpp \
     libs/cocos2d/cocos/deprecated/CCString.cpp \
-    libs/cocos2d/cocos/platform/desktop/CCGLViewImpl-desktop.cpp
+#    libs/cocos2d/cocos/platform/desktop/CCGLViewImpl-desktop.cpp \
+    CocosBridge/CCGLViewImpl-Qt.cpp \
+    CocosBridge/CCOpenGLWidget.cpp \
+    CocosBridge/CCApplication-Qt.cpp
 
 HEADERS  += mainwindow.h \
     libs/jsoncpp/src/lib_json/json_batchallocator.h \
@@ -438,10 +441,12 @@ HEADERS  += mainwindow.h \
     libs/cocos2d/cocos/deprecated/CCNotificationCenter.h \
     libs/cocos2d/cocos/deprecated/CCSet.h \
     libs/cocos2d/cocos/deprecated/CCString.h \
-    libs/cocos2d/external/glfw3/include/mac/glfw3.h \
-    libs/cocos2d/external/glfw3/include/mac/glfw3native.h \
-    CocosBridge/CocosInterface.h \
-    libs/cocos2d/cocos/platform/desktop/CCGLViewImpl-desktop.h
+#    libs/cocos2d/external/glfw3/include/mac/glfw3.h \
+#    libs/cocos2d/external/glfw3/include/mac/glfw3native.h \
+    libs/cocos2d/cocos/platform/desktop/CCGLViewImpl-desktop.h \
+    CocosBridge/CCGLViewImpl-Qt.h \
+    CocosBridge/CCOpenGLWidget.h \
+    CocosBridge/CCApplication-Qt.h
 
 FORMS    += mainwindow.ui
 
@@ -474,7 +479,7 @@ LIBS += \
     -L$$PWD/libs/cocos2d/external/jpeg/prebuilt/mac -ljpeg \
     -L$$PWD/libs/cocos2d/external/freetype2/prebuilt/mac -lfreetype \
     -L$$PWD/libs/cocos2d/external/chipmunk/prebuilt/mac -lchipmunk \
-    -L$$PWD/libs/cocos2d/external/glfw3/prebuilt/mac -lglfw3 \
+#    -L$$PWD/libs/cocos2d/external/glfw3/prebuilt/mac -lglfw3 \
 
 INCLUDEPATH += \
     libs/jsoncpp/include \
@@ -492,7 +497,7 @@ INCLUDEPATH += \
     libs/cocos2d/external/xxhash \
     libs/cocos2d/external/xxtea \
     libs/cocos2d/external/chipmunk/include/chipmunk \
-    libs/cocos2d/external/glfw3/include/mac \
+#    libs/cocos2d/external/glfw3/include/mac \
     libs/cocos2d/external/sqlite3/include \
 
 DEPENDPATH += \
@@ -502,7 +507,7 @@ DEPENDPATH += \
     $$PWD/libs/cocos2d/external/jpeg/prebuilt/mac \
     $$PWD/libs/cocos2d/external/freetype2/prebuilt/mac \
     $$PWD/libs/cocos2d/external/chipmunk/prebuilt/mac \
-    $$PWD/libs/cocos2d/external/glfw3/prebuilt/mac \
+#    $$PWD/libs/cocos2d/external/glfw3/prebuilt/mac \
 
 
 DISTFILES += \
@@ -543,5 +548,4 @@ OBJECTIVE_SOURCES += \
     libs/cocos2d/cocos/platform/mac/CCApplication-mac.mm \
     libs/cocos2d/cocos/platform/mac/CCCommon-mac.mm \
     libs/cocos2d/cocos/platform/mac/CCDevice-mac.mm \
-    libs/cocos2d/cocos/base/CCUserDefault-apple.mm \
-    CocosBridge/CocosInterface.mm
+    libs/cocos2d/cocos/base/CCUserDefault-apple.mm
