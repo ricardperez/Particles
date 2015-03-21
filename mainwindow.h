@@ -11,6 +11,7 @@ namespace Particles
 class ParticlesScene;
 class BackgroundImageController;
 class ParticleController;
+class EditorsFrameLayoutController;
 
 }
 }
@@ -47,6 +48,8 @@ private:
     MelonGames::Particles::ParticlesScene* scene;
     MelonGames::Particles::BackgroundImageController* backgroundImageController;
     MelonGames::Particles::ParticleController* particleController;
+
+    MelonGames::Particles::EditorsFrameLayoutController* mainConfigFrameLayoutController;
 };
 
 #endif // MAINWINDOW_H

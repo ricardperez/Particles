@@ -4,6 +4,7 @@
 #include "Scene/particlesscene.h"
 #include "Controller/backgroundimagecontroller.h"
 #include "Controller/particlecontroller.h"
+#include "editorsframelayoutcontroller.h"
 #include "base/CCDirector.h"
 
 #include <QDebug>
@@ -23,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent) :
     updateOptionsExpanded();
 
     connect(ui->openGLWidget, SIGNAL(signalInitialized()), this, SLOT(onOpenGLReady()));
+
+    mainConfigFrameLayoutController = new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesMainConfigFrame, this);
 }
 
 MainWindow::~MainWindow()

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1106</width>
-    <height>802</height>
+    <width>1188</width>
+    <height>862</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -112,7 +112,7 @@
             <x>0</x>
             <y>0</y>
             <width>357</width>
-            <height>1184</height>
+            <height>1210</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -120,17 +120,17 @@
             <number>5</number>
            </property>
            <item>
-            <widget class="QFrame" name="frame">
+            <widget class="QFrame" name="particlesMainConfigFrame">
              <property name="minimumSize">
               <size>
                <width>0</width>
-               <height>650</height>
+               <height>0</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
                <width>16777215</width>
-               <height>650</height>
+               <height>99999</height>
               </size>
              </property>
              <property name="styleSheet">
@@ -143,18 +143,123 @@
               <enum>QFrame::Raised</enum>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_2">
+              <property name="spacing">
+               <number>-1</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
               <item>
-               <widget class="QFrame" name="maxParticlesFrame">
+               <widget class="QFrame" name="frame">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>45</height>
+                  <height>30</height>
                  </size>
                 </property>
-                <property name="maximumSize">
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label_5">
+                   <property name="maximumSize">
+                    <size>
+                     <width>150</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">font-weight:600</string>
+                   </property>
+                   <property name="text">
+                    <string>Particle configuration</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="deployButton">
+                   <property name="minimumSize">
+                    <size>
+                     <width>30</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>30</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true"/>
+                   </property>
+                   <property name="text">
+                    <string>-</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Expanding</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="attributesFrame">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
                  <size>
-                  <width>16777215</width>
-                  <height>45</height>
+                  <width>0</width>
+                  <height>0</height>
                  </size>
                 </property>
                 <property name="frameShape">
@@ -163,774 +268,800 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <widget class="QSpinBox" name="spinBox">
-                 <property name="geometry">
-                  <rect>
-                   <x>220</x>
-                   <y>15</y>
-                   <width>71</width>
-                   <height>24</height>
-                  </rect>
+                <layout class="QVBoxLayout" name="verticalLayout_6">
+                 <property name="spacing">
+                  <number>0</number>
                  </property>
-                 <property name="maximum">
-                  <number>1000</number>
+                 <property name="leftMargin">
+                  <number>0</number>
                  </property>
-                </widget>
-                <widget class="QLabel" name="label">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>261</width>
-                   <height>16</height>
-                  </rect>
+                 <property name="topMargin">
+                  <number>0</number>
                  </property>
-                 <property name="text">
-                  <string>Max particles</string>
+                 <property name="rightMargin">
+                  <number>0</number>
                  </property>
-                </widget>
-                <widget class="QSlider" name="horizontalSlider">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>16</y>
-                   <width>211</width>
-                   <height>22</height>
-                  </rect>
+                 <property name="bottomMargin">
+                  <number>0</number>
                  </property>
-                 <property name="maximum">
-                  <number>1000</number>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
+                 <item>
+                  <widget class="QFrame" name="maxParticlesFrame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QSpinBox" name="spinBox">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                    <property name="maximum">
+                     <number>1000</number>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>261</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Max particles</string>
+                    </property>
+                   </widget>
+                   <widget class="QSlider" name="horizontalSlider">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>16</y>
+                      <width>211</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="maximum">
+                     <number>1000</number>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="lifespanFrame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QSpinBox" name="spinBox_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>261</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Lifespan</string>
+                    </property>
+                   </widget>
+                   <widget class="QSlider" name="horizontalSlider_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>16</y>
+                      <width>211</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="lifespanVarFrame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QSpinBox" name="spinBox_3">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_4">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>261</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Lifespan var</string>
+                    </property>
+                   </widget>
+                   <widget class="QSlider" name="horizontalSlider_3">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>16</y>
+                      <width>211</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="startSizeFrame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QSpinBox" name="spinBox_8">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_8">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>261</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Start size</string>
+                    </property>
+                   </widget>
+                   <widget class="QSlider" name="horizontalSlider_8">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>16</y>
+                      <width>211</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="startSizeVarFrame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QSpinBox" name="spinBox_6">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_6">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>261</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Start size var</string>
+                    </property>
+                   </widget>
+                   <widget class="QSlider" name="horizontalSlider_6">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>16</y>
+                      <width>211</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="finishSizeFrame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QSpinBox" name="spinBox_7">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_7">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>261</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Finish size</string>
+                    </property>
+                   </widget>
+                   <widget class="QSlider" name="horizontalSlider_7">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>16</y>
+                      <width>211</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="finishSizeVarFrame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QSpinBox" name="spinBox_19">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_19">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>261</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Finish size var</string>
+                    </property>
+                   </widget>
+                   <widget class="QSlider" name="horizontalSlider_19">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>16</y>
+                      <width>211</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="emitionAngleFrame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QSpinBox" name="spinBox_15">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_15">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>261</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Emition angle</string>
+                    </property>
+                   </widget>
+                   <widget class="QSlider" name="horizontalSlider_15">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>16</y>
+                      <width>211</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="emitionAngleVarFrame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QSpinBox" name="spinBox_16">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_16">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>261</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Emition angle var</string>
+                    </property>
+                   </widget>
+                   <widget class="QSlider" name="horizontalSlider_16">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>16</y>
+                      <width>211</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="rotationStartFrame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QSpinBox" name="spinBox_20">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_20">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>261</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Rotation start</string>
+                    </property>
+                   </widget>
+                   <widget class="QSlider" name="horizontalSlider_20">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>16</y>
+                      <width>211</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="rotationStartVarFrame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QSpinBox" name="spinBox_17">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_17">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>261</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Rotation start var</string>
+                    </property>
+                   </widget>
+                   <widget class="QSlider" name="horizontalSlider_17">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>16</y>
+                      <width>211</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="rotationEndFrame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QSpinBox" name="spinBox_18">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_18">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>261</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Rotation end</string>
+                    </property>
+                   </widget>
+                   <widget class="QSlider" name="horizontalSlider_18">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>16</y>
+                      <width>211</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="rotationEndVarFrame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>45</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QSpinBox" name="spinBox_21">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
+                   <widget class="QLabel" name="label_21">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>0</y>
+                      <width>261</width>
+                      <height>16</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Rotation end var</string>
+                    </property>
+                   </widget>
+                   <widget class="QSlider" name="horizontalSlider_21">
+                    <property name="geometry">
+                     <rect>
+                      <x>0</x>
+                      <y>16</y>
+                      <width>211</width>
+                      <height>22</height>
+                     </rect>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                </layout>
+                <zorder>maxParticlesFrame</zorder>
+                <zorder>rotationEndFrame</zorder>
+                <zorder>rotationStartVarFrame</zorder>
+                <zorder>lifespanVarFrame</zorder>
+                <zorder>emitionAngleFrame</zorder>
+                <zorder>startSizeFrame</zorder>
+                <zorder>startSizeVarFrame</zorder>
+                <zorder>emitionAngleVarFrame</zorder>
+                <zorder>finishSizeFrame</zorder>
+                <zorder>finishSizeVarFrame</zorder>
+                <zorder>rotationEndVarFrame</zorder>
+                <zorder>rotationStartFrame</zorder>
+                <zorder>lifespanFrame</zorder>
+                <zorder>maxParticlesFrame</zorder>
                </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="lifespanFrame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <widget class="QSpinBox" name="spinBox_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>220</x>
-                   <y>15</y>
-                   <width>71</width>
-                   <height>24</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>261</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Lifespan</string>
-                 </property>
-                </widget>
-                <widget class="QSlider" name="horizontalSlider_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>16</y>
-                   <width>211</width>
-                   <height>22</height>
-                  </rect>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="lifespanVarFrame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <widget class="QSpinBox" name="spinBox_3">
-                 <property name="geometry">
-                  <rect>
-                   <x>220</x>
-                   <y>15</y>
-                   <width>71</width>
-                   <height>24</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_4">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>261</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Lifespan var</string>
-                 </property>
-                </widget>
-                <widget class="QSlider" name="horizontalSlider_3">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>16</y>
-                   <width>211</width>
-                   <height>22</height>
-                  </rect>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="startSizeFrame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <widget class="QSpinBox" name="spinBox_8">
-                 <property name="geometry">
-                  <rect>
-                   <x>220</x>
-                   <y>15</y>
-                   <width>71</width>
-                   <height>24</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_8">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>261</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Start size</string>
-                 </property>
-                </widget>
-                <widget class="QSlider" name="horizontalSlider_8">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>16</y>
-                   <width>211</width>
-                   <height>22</height>
-                  </rect>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="startSizeVarFrame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <widget class="QSpinBox" name="spinBox_6">
-                 <property name="geometry">
-                  <rect>
-                   <x>220</x>
-                   <y>15</y>
-                   <width>71</width>
-                   <height>24</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_6">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>261</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Start size var</string>
-                 </property>
-                </widget>
-                <widget class="QSlider" name="horizontalSlider_6">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>16</y>
-                   <width>211</width>
-                   <height>22</height>
-                  </rect>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="finishSizeFrame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <widget class="QSpinBox" name="spinBox_7">
-                 <property name="geometry">
-                  <rect>
-                   <x>220</x>
-                   <y>15</y>
-                   <width>71</width>
-                   <height>24</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_7">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>261</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Finish size</string>
-                 </property>
-                </widget>
-                <widget class="QSlider" name="horizontalSlider_7">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>16</y>
-                   <width>211</width>
-                   <height>22</height>
-                  </rect>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="finishSizeVarFrame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <widget class="QSpinBox" name="spinBox_19">
-                 <property name="geometry">
-                  <rect>
-                   <x>220</x>
-                   <y>15</y>
-                   <width>71</width>
-                   <height>24</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_19">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>261</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Finish size var</string>
-                 </property>
-                </widget>
-                <widget class="QSlider" name="horizontalSlider_19">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>16</y>
-                   <width>211</width>
-                   <height>22</height>
-                  </rect>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="emitionAngleFrame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <widget class="QSpinBox" name="spinBox_15">
-                 <property name="geometry">
-                  <rect>
-                   <x>220</x>
-                   <y>15</y>
-                   <width>71</width>
-                   <height>24</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_15">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>261</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Emition angle</string>
-                 </property>
-                </widget>
-                <widget class="QSlider" name="horizontalSlider_15">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>16</y>
-                   <width>211</width>
-                   <height>22</height>
-                  </rect>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="emitionAngleVarFrame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <widget class="QSpinBox" name="spinBox_16">
-                 <property name="geometry">
-                  <rect>
-                   <x>220</x>
-                   <y>15</y>
-                   <width>71</width>
-                   <height>24</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_16">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>261</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Emition angle var</string>
-                 </property>
-                </widget>
-                <widget class="QSlider" name="horizontalSlider_16">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>16</y>
-                   <width>211</width>
-                   <height>22</height>
-                  </rect>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="rotationStartFrame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <widget class="QSpinBox" name="spinBox_20">
-                 <property name="geometry">
-                  <rect>
-                   <x>220</x>
-                   <y>15</y>
-                   <width>71</width>
-                   <height>24</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_20">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>261</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Rotation start</string>
-                 </property>
-                </widget>
-                <widget class="QSlider" name="horizontalSlider_20">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>16</y>
-                   <width>211</width>
-                   <height>22</height>
-                  </rect>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="rotationStartVarFrame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <widget class="QSpinBox" name="spinBox_17">
-                 <property name="geometry">
-                  <rect>
-                   <x>220</x>
-                   <y>15</y>
-                   <width>71</width>
-                   <height>24</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_17">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>261</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Rotation start var</string>
-                 </property>
-                </widget>
-                <widget class="QSlider" name="horizontalSlider_17">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>16</y>
-                   <width>211</width>
-                   <height>22</height>
-                  </rect>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="rotationEndFrame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <widget class="QSpinBox" name="spinBox_18">
-                 <property name="geometry">
-                  <rect>
-                   <x>220</x>
-                   <y>15</y>
-                   <width>71</width>
-                   <height>24</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_18">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>261</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Rotation end</string>
-                 </property>
-                </widget>
-                <widget class="QSlider" name="horizontalSlider_18">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>16</y>
-                   <width>211</width>
-                   <height>22</height>
-                  </rect>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="rotationEndVarFrame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>45</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <widget class="QSpinBox" name="spinBox_21">
-                 <property name="geometry">
-                  <rect>
-                   <x>220</x>
-                   <y>15</y>
-                   <width>71</width>
-                   <height>24</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_21">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>261</width>
-                   <height>16</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>Rotation end var</string>
-                 </property>
-                </widget>
-                <widget class="QSlider" name="horizontalSlider_21">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>16</y>
-                   <width>211</width>
-                   <height>22</height>
-                  </rect>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </widget>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_2">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
               </item>
              </layout>
-             <zorder>maxParticlesFrame</zorder>
-             <zorder>lifespanFrame</zorder>
-             <zorder>lifespanVarFrame</zorder>
-             <zorder>startSizeVarFrame</zorder>
-             <zorder>finishSizeFrame</zorder>
-             <zorder>startSizeFrame</zorder>
-             <zorder>emitionAngleFrame</zorder>
-             <zorder>emitionAngleVarFrame</zorder>
-             <zorder>rotationStartVarFrame</zorder>
-             <zorder>rotationEndFrame</zorder>
-             <zorder>finishSizeVarFrame</zorder>
-             <zorder>rotationStartFrame</zorder>
-             <zorder>rotationEndVarFrame</zorder>
-             <zorder>verticalSpacer_2</zorder>
             </widget>
            </item>
            <item>
@@ -982,6 +1113,22 @@
               <enum>QFrame::Raised</enum>
              </property>
             </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::MinimumExpanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
@@ -1241,7 +1388,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1106</width>
+     <width>1188</width>
      <height>22</height>
     </rect>
    </property>
