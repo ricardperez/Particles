@@ -50,8 +50,8 @@ void ParticleController::setUILifespan(QWidget* widget)
 ParticleController::EditorWidgets ParticleController::getEditorWidgets(QWidget* widget) const
 {
     EditorWidgets result;
-    result.slider = widget->findChildren<QSlider*>(QRegularExpression("slider"), Qt::FindDirectChildrenOnly).first();
-    result.spinBox = widget->findChildren<QSpinBox*>(QRegularExpression("spinbox"), Qt::FindDirectChildrenOnly).first();
+    result.slider = widget->findChildren<QSlider*>(QRegularExpression("horizontalSlider"), Qt::FindDirectChildrenOnly).first();
+    result.spinBox = widget->findChildren<QSpinBox*>(QRegularExpression("spinBox"), Qt::FindDirectChildrenOnly).first();
     return result;
 }
 

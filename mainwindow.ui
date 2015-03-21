@@ -163,7 +163,7 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <widget class="QSpinBox" name="spinbox">
+                <widget class="QSpinBox" name="spinBox">
                  <property name="geometry">
                   <rect>
                    <x>220</x>
@@ -189,7 +189,7 @@
                   <string>Max particles</string>
                  </property>
                 </widget>
-                <widget class="QSlider" name="slider">
+                <widget class="QSlider" name="horizontalSlider">
                  <property name="geometry">
                   <rect>
                    <x>0</x>
@@ -227,7 +227,7 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <widget class="QSpinBox" name="spinbox_2">
+                <widget class="QSpinBox" name="spinBox_2">
                  <property name="geometry">
                   <rect>
                    <x>220</x>
@@ -250,7 +250,7 @@
                   <string>Lifespan</string>
                  </property>
                 </widget>
-                <widget class="QSlider" name="slider_2">
+                <widget class="QSlider" name="horizontalSlider_2">
                  <property name="geometry">
                   <rect>
                    <x>0</x>
@@ -285,7 +285,7 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <widget class="QSpinBox" name="spinbox_3">
+                <widget class="QSpinBox" name="spinBox_3">
                  <property name="geometry">
                   <rect>
                    <x>220</x>
@@ -308,7 +308,7 @@
                   <string>Lifespan var</string>
                  </property>
                 </widget>
-                <widget class="QSlider" name="slider_3">
+                <widget class="QSlider" name="horizontalSlider_3">
                  <property name="geometry">
                   <rect>
                    <x>0</x>
