@@ -13,17 +13,6 @@ public:
     explicit ApplicationQt();
     virtual ~ApplicationQt();
 
-    const static cocos2d::Size designResolutionSize;
-
-    typedef struct tagResource
-    {
-        cocos2d::Size size;
-        char directory[100];
-    }Resource;
-    const static Resource smallResource;
-    const static Resource mediumResource;
-    const static Resource largeResource;
-
     /**
     @brief    Implement Director and Scene init code here.
     @return true    Initialize success, app continue.

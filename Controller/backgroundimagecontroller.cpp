@@ -55,7 +55,7 @@ void BackgroundImageController::onChangeImageButtonPressed()
 
     if (!hasBackgroundImage)
     {
-        imageName = QFileDialog::getOpenFileName(nullptr, "Select image", "", "Images (*.png *.jpg *.webp");
+        imageName = QFileDialog::getOpenFileName(nullptr, "Select image", "", "Images (*.png *.png *.webp");
     }
     else
     {

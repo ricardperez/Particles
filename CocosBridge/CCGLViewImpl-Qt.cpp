@@ -31,11 +31,16 @@ GLViewImpl* GLViewImpl::create(CCOpenGLWidget *widget)
 
 bool GLViewImpl::init(CCOpenGLWidget *widget)
 {
-    openGLWidget = widget;
+    if (!widget)
+    {
+        return false;
+    }
 
-    setFrameSize(widget->width(), widget->height());
-
-    Q_ASSERT(widget->isValid());
+    //we need to delay the creation of the GLView until the QOpenGLWidget is ready.
+    if (!widget->isValid())
+    {
+        return false;
+    }
 
     const GLubyte* glVersion = glGetString(GL_VERSION);
     if ( cocos2d::utils::atof((const char*)glVersion) < 1.5 )
@@ -44,15 +49,14 @@ bool GLViewImpl::init(CCOpenGLWidget *widget)
         return false;
     }
 
-    // Enable point size by default.
-    glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+    openGLWidget = widget;
 
     return true;
 }
 
 bool GLViewImpl::isOpenGLReady()
 {
-    return (openGLWidget != nullptr);
+    return (openGLWidget && openGLWidget->isValid());
 }
 
 void GLViewImpl::end()

@@ -7,6 +7,7 @@ namespace cocos2d
 {
 class ParticleSystemQuad;
 class Sprite;
+class EventListenerTouchOneByOne;
 }
 
 namespace MelonGames
@@ -29,8 +30,10 @@ private:
     ~ParticlesScene();
 
     bool init();
+    void updateParticleSystemPosition(cocos2d::Touch* touch);
 
 private:
+    cocos2d::EventListenerTouchOneByOne* eventsListener;
     cocos2d::ParticleSystemQuad* particleSystem;
     cocos2d::Sprite* backgroundImage;
 };

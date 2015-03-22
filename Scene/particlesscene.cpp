@@ -6,6 +6,10 @@
 #include "2d/CCSprite.h"
 #include "renderer/CCTextureCache.h"
 #include "renderer/CCTexture2D.h"
+#include "base/CCEventListenerTouch.h"
+#include "base/CCEventDispatcher.h"
+#include "base/CCEvent.h"
+#include <QDebug>
 
 namespace MelonGames
 {
@@ -26,13 +30,18 @@ ParticlesScene* ParticlesScene::create()
 }
 
 ParticlesScene::ParticlesScene()
-    : particleSystem(nullptr)
+    : eventsListener(nullptr)
+    , particleSystem(nullptr)
     , backgroundImage(nullptr)
 {
 }
 
 ParticlesScene::~ParticlesScene()
 {
+    if (eventsListener)
+    {
+        cocos2d::Director::getInstance()->getEventDispatcher()->removeEventListener(eventsListener);
+    }
 }
 
 bool ParticlesScene::init()
@@ -41,8 +50,31 @@ bool ParticlesScene::init()
     {
         //particleSystem = cocos2d::ParticleSystemQuad::create();
         particleSystem = cocos2d::ParticleFire::create();
+        qDebug() << "Content size: (" << getContentSize().width << ", " << getContentSize().height << ")";
         particleSystem->setPosition(getContentSize()*0.5f);
         addChild(particleSystem);
+
+        eventsListener = cocos2d::EventListenerTouchOneByOne::create();
+
+        eventsListener->onTouchBegan = [this](cocos2d::Touch* touch, cocos2d::Event* event) -> bool {
+            updateParticleSystemPosition(touch);
+            return true;
+        };
+
+        eventsListener->onTouchEnded = [this](cocos2d::Touch* touch, cocos2d::Event* event) -> void {
+            updateParticleSystemPosition(touch);
+        };
+
+        eventsListener->onTouchCancelled = [this](cocos2d::Touch* touch, cocos2d::Event* event) -> void {
+            updateParticleSystemPosition(touch);
+        };
+
+        eventsListener->onTouchMoved = [this](cocos2d::Touch* touch, cocos2d::Event* event) -> void {
+            updateParticleSystemPosition(touch);
+        };
+
+        cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(eventsListener, 1);
+
         return true;
     }
 
@@ -72,6 +104,14 @@ void ParticlesScene::setBackgroundImage(const std::string& imagePath)
 cocos2d::ParticleSystemQuad* ParticlesScene::getParticleSystem()
 {
     return particleSystem;
+}
+
+void ParticlesScene::updateParticleSystemPosition(cocos2d::Touch* touch)
+{
+    if (particleSystem)
+    {
+        particleSystem->setPosition(touch->getLocation());
+    }
 }
 
 }

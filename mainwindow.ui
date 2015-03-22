@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1188</width>
-    <height>862</height>
+    <width>1659</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -1045,7 +1045,6 @@
                   </widget>
                  </item>
                 </layout>
-                <zorder>maxParticlesFrame</zorder>
                 <zorder>rotationEndFrame</zorder>
                 <zorder>rotationStartVarFrame</zorder>
                 <zorder>lifespanVarFrame</zorder>
@@ -1388,7 +1387,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1188</width>
+     <width>1659</width>
      <height>22</height>
     </rect>
    </property>
