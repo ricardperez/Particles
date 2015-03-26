@@ -1,0 +1,71 @@
+[
+	{
+		"id": "maxParticles",
+		"min": 0,
+		"max": 2000
+	},
+	{
+		"id": "lifespan",
+		"min": 0.0,
+		"max": 10.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "lifespanVar",
+		"min": 0.0,
+		"max": 10.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "startSize",
+		"min": 0,
+		"max": 512
+	},
+	{
+		"id": "startSizeVar",
+		"min": 0,
+		"max": 512
+	},
+	{
+		"id": "endSize",
+		"min": 0,
+		"max": 512
+	},
+	{
+		"id": "endSizeVar",
+		"min": 0,
+		"max": 512
+	},
+	{
+		"id": "angleEmiton",
+		"min": 0,
+		"max": 360.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "angleEmitonVar",
+		"min": 0,
+		"max": 180.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "rotationStart",
+		"min": -2500,
+		"max": 2500
+	},
+	{
+		"id": "rotationStartVar",
+		"min": -2500,
+		"max": 2500
+	},
+	{
+		"id": "rotationEnd",
+		"min": -2500,
+		"max": 2500
+	},
+	{
+		"id": "rotationEndVar",
+		"min": -2500,
+		"max": 2500
+	}
+]

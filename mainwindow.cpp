@@ -84,6 +84,17 @@ void MainWindow::initParticleController()
     particleController->setParticlesScene(scene);
     particleController->setUIMaxParticles(ui->maxParticlesFrame);
     particleController->setUILifespan(ui->lifespanFrame);
+    particleController->setUILifespanVar(ui->lifespanVarFrame);
+    particleController->setUIStartSize(ui->startSizeFrame);
+    particleController->setUIStartSizeVar(ui->startSizeVarFrame);
+    particleController->setUIFinishSize(ui->finishSizeFrame);
+    particleController->setUIFinishSizeVar(ui->finishSizeVarFrame);
+    particleController->setUIEmitionAngle(ui->emitionAngleFrame);
+    particleController->setUIEmitionAngleVar(ui->emitionAngleVarFrame);
+    particleController->setUIRotationStart(ui->rotationStartFrame);
+    particleController->setUIRotationStartVar(ui->rotationStartVarFrame);
+    particleController->setUIRotationEnd(ui->rotationEndFrame);
+    particleController->setUIRotationEndVar(ui->rotationEndVarFrame);
 }
 
 void MainWindow::on_expandOptionsButton_clicked()

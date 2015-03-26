@@ -368,16 +368,6 @@
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
                    </property>
-                   <widget class="QSpinBox" name="spinBox_2">
-                    <property name="geometry">
-                     <rect>
-                      <x>220</x>
-                      <y>15</y>
-                      <width>71</width>
-                      <height>24</height>
-                     </rect>
-                    </property>
-                   </widget>
                    <widget class="QLabel" name="label_2">
                     <property name="geometry">
                      <rect>
@@ -404,6 +394,16 @@
                      <enum>Qt::Horizontal</enum>
                     </property>
                    </widget>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
                   </widget>
                  </item>
                  <item>
@@ -426,16 +426,6 @@
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
                    </property>
-                   <widget class="QSpinBox" name="spinBox_3">
-                    <property name="geometry">
-                     <rect>
-                      <x>220</x>
-                      <y>15</y>
-                      <width>71</width>
-                      <height>24</height>
-                     </rect>
-                    </property>
-                   </widget>
                    <widget class="QLabel" name="label_4">
                     <property name="geometry">
                      <rect>
@@ -460,6 +450,16 @@
                     </property>
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
                     </property>
                    </widget>
                   </widget>
@@ -716,16 +716,6 @@
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
                    </property>
-                   <widget class="QSpinBox" name="spinBox_15">
-                    <property name="geometry">
-                     <rect>
-                      <x>220</x>
-                      <y>15</y>
-                      <width>71</width>
-                      <height>24</height>
-                     </rect>
-                    </property>
-                   </widget>
                    <widget class="QLabel" name="label_15">
                     <property name="geometry">
                      <rect>
@@ -752,6 +742,16 @@
                      <enum>Qt::Horizontal</enum>
                     </property>
                    </widget>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_3">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                   </widget>
                   </widget>
                  </item>
                  <item>
@@ -774,16 +774,6 @@
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
                    </property>
-                   <widget class="QSpinBox" name="spinBox_16">
-                    <property name="geometry">
-                     <rect>
-                      <x>220</x>
-                      <y>15</y>
-                      <width>71</width>
-                      <height>24</height>
-                     </rect>
-                    </property>
-                   </widget>
                    <widget class="QLabel" name="label_16">
                     <property name="geometry">
                      <rect>
@@ -808,6 +798,16 @@
                     </property>
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_4">
+                    <property name="geometry">
+                     <rect>
+                      <x>220</x>
+                      <y>15</y>
+                      <width>71</width>
+                      <height>24</height>
+                     </rect>
                     </property>
                    </widget>
                   </widget>

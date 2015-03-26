@@ -557,3 +557,6 @@ OBJECTIVE_SOURCES += \
     libs/cocos2d/cocos/platform/mac/CCCommon-mac.mm \
     libs/cocos2d/cocos/platform/mac/CCDevice-mac.mm \
     libs/cocos2d/cocos/base/CCUserDefault-apple.mm
+
+RESOURCES += \
+    Resources/resources.qrc
