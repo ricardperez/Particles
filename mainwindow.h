@@ -50,6 +50,7 @@ private:
     MelonGames::Particles::ParticleController* particleController;
 
     MelonGames::Particles::EditorsFrameLayoutController* mainConfigFrameLayoutController;
+    MelonGames::Particles::EditorsFrameLayoutController* colorsConfigFrameLayoutController;
 };
 
 #endif // MAINWINDOW_H

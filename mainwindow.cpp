@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->openGLWidget, SIGNAL(signalInitialized()), this, SLOT(onOpenGLReady()));
 
     mainConfigFrameLayoutController = new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesMainConfigFrame, this);
+    colorsConfigFrameLayoutController = new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesColorsConfigFrame, this);
 }
 
 MainWindow::~MainWindow()
@@ -81,6 +82,7 @@ void MainWindow::initBackgroundImageController()
 void MainWindow::initParticleController()
 {
     particleController = new MelonGames::Particles::ParticleController();
+
     particleController->setParticlesScene(scene);
     particleController->setUIMaxParticles(ui->maxParticlesFrame);
     particleController->setUILifespan(ui->lifespanFrame);
@@ -95,6 +97,11 @@ void MainWindow::initParticleController()
     particleController->setUIRotationStartVar(ui->rotationStartVarFrame);
     particleController->setUIRotationEnd(ui->rotationEndFrame);
     particleController->setUIRotationEndVar(ui->rotationEndVarFrame);
+
+    particleController->setUIStartColor(ui->startColorFrame);
+    particleController->setUIStartColorVar(ui->startColorVarFrame);
+    particleController->setUIEndColor(ui->endColorFrame);
+    particleController->setUIEndColorVar(ui->endColorVarFrame);
 }
 
 void MainWindow::on_expandOptionsButton_clicked()

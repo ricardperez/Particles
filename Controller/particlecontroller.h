@@ -6,10 +6,16 @@
 #include <QSlider>
 #include <QSpinBox>
 #include <QDoubleSpinBox>
+#include <QPushButton>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QSignalMapper>
 #include <functional>
+
+namespace cocos2d
+{
+class Color4F;
+}
 
 namespace MelonGames {
 namespace Particles {
@@ -38,6 +44,11 @@ public:
     void setUIRotationEnd(QWidget* widget);
     void setUIRotationEndVar(QWidget* widget);
 
+    void setUIStartColor(QWidget* widget);
+    void setUIStartColorVar(QWidget* widget);
+    void setUIEndColor(QWidget* widget);
+    void setUIEndColorVar(QWidget* widget);
+
 private slots:
     void valueChanged(QObject* object);
 
@@ -47,12 +58,14 @@ private:
         QSlider* slider;
         QSpinBox* spinBox;
         QDoubleSpinBox* doubleSpinBox;
+        QPushButton* colorButton;
     };
     EditorWidgets getEditorWidgets(QWidget* parent) const;
     QJsonObject getAttributeDescription(const QString& key) const;
 
     void setUIElementInt(QWidget* widget, const QString& key, int value, std::function<void(int)> setter);
     void setUIElementFloat(QWidget* widget, const QString& key, float value, std::function<void(float)> setter);
+    void setUIElementColor(QWidget* widget, std::function<const cocos2d::Color4F&()> getter, std::function<void(const cocos2d::Color4F&)> setter);
 
 private:
     ParticlesScene* scene;
@@ -66,26 +79,7 @@ class AttributeDescription : public QObject
     Q_OBJECT
 public:
     explicit AttributeDescription(QObject* parent = 0);
-
-    enum class Type
-    {
-        eInt,
-        eFloat
-    };
-    Type type;
-
-    enum class Source
-    {
-        eSlider,
-        eSpinBox
-    };
-    Source source;
-
-    struct
-    {
-        std::function<void(void)> typeInt;
-        std::function<void(void)> typeFloat;
-    } callback;
+    std::function<void(void)> callback;
 };
 
 } // namespace Particles

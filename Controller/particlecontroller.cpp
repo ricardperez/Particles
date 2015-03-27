@@ -6,6 +6,8 @@
 #include <QByteArray>
 #include <QJsonDocument>
 #include <QJsonValue>
+#include <QColorDialog>
+#include <QRgb>
 #include <QDebug>
 
 namespace MelonGames {
@@ -184,6 +186,62 @@ void ParticleController::setUIRotationEndVar(QWidget* widget)
     setUIElementInt(widget, "rotationEndVar", value, setter);
 }
 
+void ParticleController::setUIStartColor(QWidget* widget)
+{
+    Q_ASSERT(scene);
+
+    auto getter = [this]() -> const cocos2d::Color4F& {
+            return scene->getParticleSystem()->getStartColor();
+};
+    auto setter = [this](const cocos2d::Color4F& value) -> void {
+        scene->getParticleSystem()->setStartColor(value);
+    };
+
+    setUIElementColor(widget, getter, setter);
+}
+
+void ParticleController::setUIStartColorVar(QWidget* widget)
+{
+    Q_ASSERT(scene);
+
+    auto getter = [this]() -> const cocos2d::Color4F& {
+            return scene->getParticleSystem()->getStartColorVar();
+};
+    auto setter = [this](const cocos2d::Color4F& value) -> void {
+        scene->getParticleSystem()->setStartColorVar(value);
+    };
+
+    setUIElementColor(widget, getter, setter);
+}
+
+void ParticleController::setUIEndColor(QWidget* widget)
+{
+    Q_ASSERT(scene);
+
+    auto getter = [this]() -> const cocos2d::Color4F& {
+            return scene->getParticleSystem()->getEndColor();
+};
+    auto setter = [this](const cocos2d::Color4F& value) -> void {
+        scene->getParticleSystem()->setEndColor(value);
+    };
+
+    setUIElementColor(widget, getter, setter);
+}
+
+void ParticleController::setUIEndColorVar(QWidget* widget)
+{
+    Q_ASSERT(scene);
+
+    auto getter = [this]() -> const cocos2d::Color4F& {
+            return scene->getParticleSystem()->getEndColorVar();
+};
+    auto setter = [this](const cocos2d::Color4F& value) -> void {
+        scene->getParticleSystem()->setEndColorVar(value);
+    };
+
+    setUIElementColor(widget, getter, setter);
+}
+
 ParticleController::EditorWidgets ParticleController::getEditorWidgets(QWidget* widget) const
 {
     EditorWidgets result;
@@ -196,6 +254,9 @@ ParticleController::EditorWidgets ParticleController::getEditorWidgets(QWidget* 
 
     QList<QDoubleSpinBox*> doubleSpinBoxes = widget->findChildren<QDoubleSpinBox*>(QRegularExpression("doubleSpinBox"), Qt::FindDirectChildrenOnly);
     result.doubleSpinBox = (doubleSpinBoxes.empty() ? nullptr : doubleSpinBoxes.first());
+
+    QList<QPushButton*> pushButtons = widget->findChildren<QPushButton*>(QRegularExpression("pushButton"), Qt::FindDirectChildrenOnly);
+    result.colorButton = (pushButtons.empty() ? nullptr : pushButtons.first());
 
     return result;
 }
@@ -232,18 +293,14 @@ void ParticleController::setUIElementInt(QWidget* widget, const QString& key, in
     editors.spinBox->setValue(value);
 
     AttributeDescription* attributeDescriptionSlider = new AttributeDescription(signalMapper);
-    attributeDescriptionSlider->source = AttributeDescription::Source::eSlider;
-    attributeDescriptionSlider->type = AttributeDescription::Type::eInt;
-    attributeDescriptionSlider->callback.typeInt = [editors, setter]() -> void {
+    attributeDescriptionSlider->callback = [editors, setter]() -> void {
         int value = editors.slider->value();
         setter(value);
         editors.spinBox->setValue(value);
     };
 
     AttributeDescription* attributeDescriptionSpinBox = new AttributeDescription(signalMapper);
-    attributeDescriptionSpinBox->source = AttributeDescription::Source::eSpinBox;
-    attributeDescriptionSpinBox->type = AttributeDescription::Type::eInt;
-    attributeDescriptionSpinBox->callback.typeInt = [editors, setter]() -> void {
+    attributeDescriptionSpinBox->callback = [editors, setter]() -> void {
         int value = editors.spinBox->value();
         setter(value);
         editors.slider->setValue(value);
@@ -275,18 +332,14 @@ void ParticleController::setUIElementFloat(QWidget* widget, const QString& key, 
     editors.doubleSpinBox->setValue(value);
 
     AttributeDescription* attributeDescriptionSlider = new AttributeDescription(signalMapper);
-    attributeDescriptionSlider->source = AttributeDescription::Source::eSlider;
-    attributeDescriptionSlider->type = AttributeDescription::Type::eFloat;
-    attributeDescriptionSlider->callback.typeFloat = [editors, sliderScale, setter]() -> void {
+    attributeDescriptionSlider->callback = [editors, sliderScale, setter]() -> void {
         float value = editors.slider->value() / sliderScale;
         setter(value);
         editors.doubleSpinBox->setValue(value);
     };
 
     AttributeDescription* attributeDescriptionSpinBox = new AttributeDescription(signalMapper);
-    attributeDescriptionSpinBox->source = AttributeDescription::Source::eSpinBox;
-    attributeDescriptionSpinBox->type = AttributeDescription::Type::eFloat;
-    attributeDescriptionSpinBox->callback.typeFloat = [editors, sliderScale, setter]() -> void {
+    attributeDescriptionSpinBox->callback = [editors, sliderScale, setter]() -> void {
         float value = editors.doubleSpinBox->value();
         setter(value);
         editors.slider->setValue(value * sliderScale);
@@ -299,18 +352,38 @@ void ParticleController::setUIElementFloat(QWidget* widget, const QString& key, 
     connect(editors.doubleSpinBox, SIGNAL(valueChanged(double)), signalMapper, SLOT(map()));
 }
 
+void ParticleController::setUIElementColor(QWidget *widget, std::function<const cocos2d::Color4F&()> getter, std::function<void(const cocos2d::Color4F&)> setter)
+{
+    EditorWidgets editors = getEditorWidgets(widget);
+
+    const cocos2d::Color4F& value = getter();
+    QColor colorQ(value.r*255, value.g*255, value.b*255, value.a*255);
+    editors.colorButton->setStyleSheet(QString("background-color: %1").arg(colorQ.name()));
+
+    AttributeDescription* attributeDescription = new AttributeDescription(signalMapper);
+    attributeDescription->callback = [getter, setter, editors]() -> void {
+        const cocos2d::Color4F& value = getter();
+        QRgb startColor = qRgba(value.r*255, value.g*255, value.b*255, value.a*255);
+        bool ok = true;
+        QRgb rgba = QColorDialog::getRgba(startColor, &ok);
+        if (ok)
+        {
+            QColor color(qRed(rgba), qGreen(rgba), qBlue(rgba), qAlpha(rgba));
+            editors.colorButton->setStyleSheet(QString("background-color: %1").arg(color.name()));
+            cocos2d::Color4F endColor(color.red()/255.0f, color.green()/255.0f, color.blue()/255.0f, color.alpha()/255.0f);
+            setter(endColor);
+        }
+    };
+
+    signalMapper->setMapping(editors.colorButton, attributeDescription);
+
+    connect(editors.colorButton, SIGNAL(clicked()), signalMapper, SLOT(map()));
+}
+
 void ParticleController::valueChanged(QObject* object)
 {
     AttributeDescription* attributeDescription = static_cast<AttributeDescription*>(object);
-
-    if (attributeDescription->type == AttributeDescription::Type::eFloat)
-    {
-        attributeDescription->callback.typeFloat();
-    }
-    else
-    {
-        attributeDescription->callback.typeInt();
-    }
+    attributeDescription->callback();
 }
 
 } // namespace Particles
