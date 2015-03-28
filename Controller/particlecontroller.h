@@ -10,6 +10,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QSignalMapper>
+#include <QComboBox>
 #include <functional>
 
 namespace cocos2d
@@ -49,6 +50,10 @@ public:
     void setUIEndColor(QWidget* widget);
     void setUIEndColorVar(QWidget* widget);
 
+    void setUIBlendFunctionBuiltIn(QWidget* widget);
+    void setUIBlendFunctionSource(QWidget* widget);
+    void setUIBlendFunctionDestination(QWidget* widget);
+
 private slots:
     void valueChanged(QObject* object);
 
@@ -59,6 +64,7 @@ private:
         QSpinBox* spinBox;
         QDoubleSpinBox* doubleSpinBox;
         QPushButton* colorButton;
+        QComboBox* comboBox;
     };
     EditorWidgets getEditorWidgets(QWidget* parent) const;
     QJsonObject getAttributeDescription(const QString& key) const;
@@ -66,6 +72,7 @@ private:
     void setUIElementInt(QWidget* widget, const QString& key, int value, std::function<void(int)> setter);
     void setUIElementFloat(QWidget* widget, const QString& key, float value, std::function<void(float)> setter);
     void setUIElementColor(QWidget* widget, std::function<const cocos2d::Color4F&()> getter, std::function<void(const cocos2d::Color4F&)> setter);
+    void setUIElementComboBox(QWidget* widget, const QString& key, int value, std::function<void(int)> setter);
 
 private:
     ParticlesScene* scene;

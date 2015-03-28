@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mainConfigFrameLayoutController = new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesMainConfigFrame, this);
     colorsConfigFrameLayoutController = new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesColorsConfigFrame, this);
+    blendFunctionConfigFrameLayoutController = new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesBlendFunctionConfigFrame, this);
 }
 
 MainWindow::~MainWindow()
@@ -102,6 +103,10 @@ void MainWindow::initParticleController()
     particleController->setUIStartColorVar(ui->startColorVarFrame);
     particleController->setUIEndColor(ui->endColorFrame);
     particleController->setUIEndColorVar(ui->endColorVarFrame);
+
+    particleController->setUIBlendFunctionBuiltIn(ui->blendFunctionFrame);
+    particleController->setUIBlendFunctionSource(ui->blendFunctionSourceFrame);
+    particleController->setUIBlendFunctionDestination(ui->blendFunctionDestFrame);
 }
 
 void MainWindow::on_expandOptionsButton_clicked()

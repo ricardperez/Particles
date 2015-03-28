@@ -67,5 +67,81 @@
 		"id": "rotationEndVar",
 		"min": -2500,
 		"max": 2500
+	},
+	{
+		"id": "blendFunction",
+		"values":
+		[
+			{
+				"name": "DISABLE",
+				"src": 1,
+				"dst": 0
+			},
+			{
+				"name": "ALPHA PREMULTIPLIED",
+				"src": 1,
+				"dst": 771
+			},
+			{
+				"name": "ALPHA NON PREMULTIPLIED",
+				"src": 770,
+				"dst": 771
+			},
+			{
+				"name": "ADDITIVE",
+				"src": 770,
+				"dst": 1
+			}
+		]
+	},
+	{
+		"id": "blendFunctionCustom",
+		"values":
+		[
+			{
+				"name": "GL_ZERO",
+				"value": 0
+			},
+			{
+				"name": "GL_ONE",
+				"value": 1
+			},
+			{
+				"name": "GL_SRC_COLOR",
+				"value": 768
+			},
+			{
+				"name": "GL_ONE_MINUS_SRC_COLOR",
+				"value": 769
+			},
+			{
+				"name": "GL_SRC_ALPHA",
+				"value": 770
+			},
+			{
+				"name": "GL_ONE_MINUS_SRC_ALPHA",
+				"value": 771
+			},
+			{
+				"name": "GL_DST_ALPHA",
+				"value": 772
+			},
+			{
+				"name": "GL_ONE_MINUS_DST_ALPHA",
+				"value": 773
+			},
+			{
+				"name": "GL_DST_COLOR",
+				"value": 774
+			},
+			{
+				"name": "GL_ONE_MINUS_DST_COLOR",
+				"value": 775
+			},
+			{
+				"name": "GL_SRC_ALPHA_SATURATE",
+				"value": 776
+			}
+		]
 	}
 ]

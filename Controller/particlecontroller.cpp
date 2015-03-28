@@ -242,6 +242,37 @@ void ParticleController::setUIEndColorVar(QWidget* widget)
     setUIElementColor(widget, getter, setter);
 }
 
+void ParticleController::setUIBlendFunctionBuiltIn(QWidget* widget)
+{
+
+}
+
+void ParticleController::setUIBlendFunctionSource(QWidget* widget)
+{
+    Q_ASSERT(scene);
+
+    int value = scene->getParticleSystem()->getBlendFunc().src;
+    auto setter = [this](int val)->void{
+        cocos2d::BlendFunc blendFunc = scene->getParticleSystem()->getBlendFunc();
+        blendFunc.src = val;
+        scene->getParticleSystem()->setBlendFunc(blendFunc);
+    };
+    setUIElementComboBox(widget, "blendFunctionCustom", value, setter);
+}
+
+void ParticleController::setUIBlendFunctionDestination(QWidget* widget)
+{
+    Q_ASSERT(scene);
+
+    int value = scene->getParticleSystem()->getBlendFunc().dst;
+    auto setter = [this](int val)->void{
+        cocos2d::BlendFunc blendFunc = scene->getParticleSystem()->getBlendFunc();
+        blendFunc.dst = val;
+        scene->getParticleSystem()->setBlendFunc(blendFunc);
+    };
+    setUIElementComboBox(widget, "blendFunctionCustom", value, setter);
+}
+
 ParticleController::EditorWidgets ParticleController::getEditorWidgets(QWidget* widget) const
 {
     EditorWidgets result;
@@ -257,6 +288,9 @@ ParticleController::EditorWidgets ParticleController::getEditorWidgets(QWidget* 
 
     QList<QPushButton*> pushButtons = widget->findChildren<QPushButton*>(QRegularExpression("pushButton"), Qt::FindDirectChildrenOnly);
     result.colorButton = (pushButtons.empty() ? nullptr : pushButtons.first());
+
+    QList<QComboBox*> comboBoxes = widget->findChildren<QComboBox*>(QRegularExpression("comboBox"), Qt::FindDirectChildrenOnly);
+    result.comboBox = (comboBoxes.empty() ? nullptr : comboBoxes.first());
 
     return result;
 }
@@ -378,6 +412,64 @@ void ParticleController::setUIElementColor(QWidget *widget, std::function<const 
     signalMapper->setMapping(editors.colorButton, attributeDescription);
 
     connect(editors.colorButton, SIGNAL(clicked()), signalMapper, SLOT(map()));
+}
+
+
+void ParticleController::setUIElementComboBox(QWidget* widget, const QString& key, int value, std::function<void(int)> setter)
+{
+    EditorWidgets editors = getEditorWidgets(widget);
+
+    int selectedIndex = 0;
+    int i = 0;
+    QJsonObject json = getAttributeDescription(key);
+    for (const QJsonValue& jsonValue : json["values"].toArray())
+    {
+        QJsonObject valueObj = jsonValue.toObject();
+        QString text = valueObj["name"].toString();
+        int intValue = valueObj["value"].toInt();
+        editors.comboBox->addItem(text, QVariant(intValue));
+
+        if (intValue == value)
+        {
+            selectedIndex = i;
+        }
+        ++i;
+    }
+
+    editors.comboBox->setCurrentIndex(selectedIndex);
+
+    const int min = json["min"].toInt();
+    const int max = json["max"].toInt();
+
+    editors.slider->setMinimum(min);
+    editors.slider->setMaximum(max);
+    editors.spinBox->setMinimum(min);
+    editors.spinBox->setMaximum(max);
+
+    editors.slider->setValue(value);
+    editors.spinBox->setValue(value);
+
+    AttributeDescription* attributeDescriptionSlider = new AttributeDescription(signalMapper);
+    attributeDescriptionSlider->callback = [editors, setter]() -> void {
+        int value = editors.slider->value();
+        setter(value);
+        editors.spinBox->setValue(value);
+    };
+
+    AttributeDescription* attributeDescriptionSpinBox = new AttributeDescription(signalMapper);
+    attributeDescriptionSpinBox->callback = [editors, setter]() -> void {
+        int value = editors.spinBox->value();
+        setter(value);
+        editors.slider->setValue(value);
+    };
+
+    signalMapper->setMapping(editors.slider, attributeDescriptionSlider);
+    signalMapper->setMapping(editors.spinBox, attributeDescriptionSpinBox);
+
+    connect(editors.slider, SIGNAL(sliderMoved(int)), signalMapper, SLOT(map()));
+    connect(editors.spinBox, SIGNAL(valueChanged(int)), signalMapper, SLOT(map()));
+
+
 }
 
 void ParticleController::valueChanged(QObject* object)

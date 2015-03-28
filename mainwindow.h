@@ -51,6 +51,7 @@ private:
 
     MelonGames::Particles::EditorsFrameLayoutController* mainConfigFrameLayoutController;
     MelonGames::Particles::EditorsFrameLayoutController* colorsConfigFrameLayoutController;
+    MelonGames::Particles::EditorsFrameLayoutController* blendFunctionConfigFrameLayoutController;
 };
 
 #endif // MAINWINDOW_H
