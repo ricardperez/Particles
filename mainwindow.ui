@@ -1606,31 +1606,6 @@
                       <height>26</height>
                      </rect>
                     </property>
-                    <item>
-                     <property name="text">
-                      <string>ALPHA NON PREMULTIPLIED</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>DISABLE</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>ALPHA PREMULTIPLIED</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>ADDITIVE</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>CUSTOM</string>
-                     </property>
-                    </item>
                    </widget>
                   </widget>
                  </item>
@@ -1672,7 +1647,7 @@
                    </widget>
                    <widget class="QComboBox" name="comboBox_2">
                     <property name="enabled">
-                     <bool>false</bool>
+                     <bool>true</bool>
                     </property>
                     <property name="geometry">
                      <rect>
@@ -1728,7 +1703,7 @@
                    </widget>
                    <widget class="QComboBox" name="comboBox_3">
                     <property name="enabled">
-                     <bool>false</bool>
+                     <bool>true</bool>
                     </property>
                     <property name="geometry">
                      <rect>

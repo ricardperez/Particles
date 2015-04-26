@@ -74,10 +74,16 @@ private:
     void setUIElementColor(QWidget* widget, std::function<const cocos2d::Color4F&()> getter, std::function<void(const cocos2d::Color4F&)> setter);
     void setUIElementComboBox(QWidget* widget, const QString& key, int value, std::function<void(int)> setter);
 
+    void updateBlendFunctionWidgets();
+
 private:
     ParticlesScene* scene;
     QJsonArray attributesDescription;
     QSignalMapper* signalMapper;
+
+    QWidget* blendFunctionBuiltInWidget;
+    QWidget* blendFunctionSourceWidget;
+    QWidget* blendFunctionDestinationWidget;
 };
 
 
