@@ -6,7 +6,8 @@
 #include "Controller/particlecontroller.h"
 #include "editorsframelayoutcontroller.h"
 #include "base/CCDirector.h"
-
+#include "FileParser.h"
+#include <QFileDialog>
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -109,8 +110,61 @@ void MainWindow::initParticleController()
     particleController->setUIBlendFunctionDestination(ui->blendFunctionDestFrame);
 }
 
+void MainWindow::save()
+{
+    if (scene)
+    {
+        MelonGames::Particles::FileParser fileParser;
+        fileParser.save(path, scene->getParticleSystem(), "");
+    }
+}
+
+void MainWindow::load()
+{
+    if (scene)
+    {
+        MelonGames::Particles::FileParser fileParser;
+        fileParser.load(path, scene->getParticleSystem());
+
+        particleController->reload();
+    }
+}
+
 void MainWindow::on_expandOptionsButton_clicked()
 {
     optionsExpanded = !optionsExpanded;
     updateOptionsExpanded();
+}
+
+void MainWindow::onMenuFileOpen()
+{
+    QString path = QFileDialog::getOpenFileName(this, "Open particle system", "", "PLIST (*.plist)");
+    if (!path.isEmpty())
+    {
+        this->path = path;
+        load();
+    }
+}
+
+void MainWindow::onMenuFileSave()
+{
+    if (path.isEmpty())
+    {
+        onMenuFileSaveAs();
+    }
+    else
+    {
+        save();
+    }
+}
+
+void MainWindow::onMenuFileSaveAs()
+{
+    QString path = QFileDialog::getSaveFileName(this, "Save particle system", "", "PLIST (*.plist)");
+    if (!path.isEmpty())
+    {
+        this->path = path;
+
+        save();
+    }
 }

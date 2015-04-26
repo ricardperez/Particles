@@ -30,6 +30,7 @@ public:
     ~ParticleController();
 
     void setParticlesScene(ParticlesScene* scene);
+    void reload();
 
     void setUIMaxParticles(QWidget* widget);
     void setUILifespan(QWidget* widget);
@@ -69,10 +70,10 @@ private:
     EditorWidgets getEditorWidgets(QWidget* parent) const;
     QJsonObject getAttributeDescription(const QString& key) const;
 
-    void setUIElementInt(QWidget* widget, const QString& key, int value, std::function<void(int)> setter);
-    void setUIElementFloat(QWidget* widget, const QString& key, float value, std::function<void(float)> setter);
+    void setUIElementInt(QWidget* widget, const QString& key, std::function<int(void)> getter, std::function<void(int)> setter);
+    void setUIElementFloat(QWidget* widget, const QString& key, std::function<float(void)> getter, std::function<void(float)> setter);
     void setUIElementColor(QWidget* widget, std::function<const cocos2d::Color4F&()> getter, std::function<void(const cocos2d::Color4F&)> setter);
-    void setUIElementComboBox(QWidget* widget, const QString& key, int value, std::function<void(int)> setter);
+    void setUIElementComboBox(QWidget* widget, const QString& key, std::function<int(void)> getter, std::function<void(int)> setter);
 
     void updateBlendFunctionWidgets();
 
@@ -84,6 +85,8 @@ private:
     QWidget* blendFunctionBuiltInWidget;
     QWidget* blendFunctionSourceWidget;
     QWidget* blendFunctionDestinationWidget;
+
+    std::vector<std::function<void(void)> > reloadFunctions;
 };
 
 

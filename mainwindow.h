@@ -34,11 +34,18 @@ private slots:
 
     void on_expandOptionsButton_clicked();
 
+    void onMenuFileOpen();
+    void onMenuFileSave();
+    void onMenuFileSaveAs();
+
 private:
     void updateScrollExpanded();
     void updateOptionsExpanded();
     void initBackgroundImageController();
     void initParticleController();
+
+    void save();
+    void load();
 
 private:
     Ui::MainWindow *ui;
@@ -52,6 +59,8 @@ private:
     MelonGames::Particles::EditorsFrameLayoutController* mainConfigFrameLayoutController;
     MelonGames::Particles::EditorsFrameLayoutController* colorsConfigFrameLayoutController;
     MelonGames::Particles::EditorsFrameLayoutController* blendFunctionConfigFrameLayoutController;
+
+    QString path;
 };
 
 #endif // MAINWINDOW_H

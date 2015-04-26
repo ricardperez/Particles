@@ -987,7 +987,7 @@ void ParticleSystem::setGravity(const Vec2& g)
     modeA.gravity = g;
 }
 
-const Vec2& ParticleSystem::getGravity()
+const Vec2& ParticleSystem::getGravity() const
 {
     CCASSERT(_emitterMode == Mode::GRAVITY, "Particle Mode should be Gravity");
     return modeA.gravity;

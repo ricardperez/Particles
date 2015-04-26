@@ -201,7 +201,7 @@ public:
     virtual void setAutoRemoveOnFinish(bool var);
 
     // mode A
-    virtual const Vec2& getGravity();
+    virtual const Vec2& getGravity() const;
     virtual void setGravity(const Vec2& g);
     virtual float getSpeed() const;
     virtual void setSpeed(float speed);
@@ -391,12 +391,12 @@ CC_CONSTRUCTOR_ACCESS:
      @since v0.99.3
      */
     bool initWithFile(const std::string& plistFile);
-    
+
     /** initializes a QuadParticleSystem from a Dictionary.
      @since v0.99.3
      */
     bool initWithDictionary(ValueMap& dictionary);
-    
+
     /** initializes a particle system from a NSDictionary and the path from where to load the png
      @since v2.1
      */

@@ -46,147 +46,181 @@ namespace MelonGames {
             this->scene = scene;
         }
 
+        void ParticleController::reload()
+        {
+            for (auto& reloadFunction : reloadFunctions)
+            {
+                reloadFunction();
+            }
+        }
+
         void ParticleController::setUIMaxParticles(QWidget* widget)
         {
             Q_ASSERT(scene);
 
-            int value = scene->getParticleSystem()->getTotalParticles();
+            auto getter = [this]()->int {
+                    return scene->getParticleSystem()->getTotalParticles();
+            };
             auto setter = [this](int val)->void{
                 scene->getParticleSystem()->setTotalParticles(val);
             };
-            setUIElementInt(widget, "maxParticles", value, setter);
+            setUIElementInt(widget, "maxParticles", getter, setter);
         }
 
         void ParticleController::setUILifespan(QWidget* widget)
         {
             Q_ASSERT(scene);
 
-            float value = scene->getParticleSystem()->getLife();
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem()->getLife();
+            };
             auto setter = [this](int val)->void{
                 scene->getParticleSystem()->setLife(val);
             };
-            setUIElementFloat(widget, "lifespan", value, setter);
+            setUIElementFloat(widget, "lifespan", getter, setter);
         }
 
         void ParticleController::setUILifespanVar(QWidget* widget)
         {
             Q_ASSERT(scene);
 
-            float value = scene->getParticleSystem()->getLifeVar();
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem()->getLifeVar();
+            };
             auto setter = [this](int val)->void{
                 scene->getParticleSystem()->setLifeVar(val);
             };
-            setUIElementFloat(widget, "lifespanVar", value, setter);
+            setUIElementFloat(widget, "lifespanVar", getter, setter);
         }
 
         void ParticleController::setUIStartSize(QWidget* widget)
         {
             Q_ASSERT(scene);
 
-            int value = scene->getParticleSystem()->getStartSize();
+            auto getter = [this]()->int {
+                    return scene->getParticleSystem()->getStartSize();
+            };
             auto setter = [this](int val)->void{
                 scene->getParticleSystem()->setStartSize(val);
             };
-            setUIElementInt(widget, "startSize", value, setter);
+            setUIElementInt(widget, "startSize", getter, setter);
         }
 
         void ParticleController::setUIStartSizeVar(QWidget* widget)
         {
             Q_ASSERT(scene);
 
-            int value = scene->getParticleSystem()->getStartSizeVar();
+            auto getter = [this]()->int {
+                    return scene->getParticleSystem()->getStartSizeVar();
+            };
             auto setter = [this](int val)->void{
                 scene->getParticleSystem()->setStartSizeVar(val);
             };
-            setUIElementInt(widget, "startSizeVar", value, setter);
+            setUIElementInt(widget, "startSizeVar", getter, setter);
         }
 
         void ParticleController::setUIFinishSize(QWidget* widget)
         {
             Q_ASSERT(scene);
 
-            int value = scene->getParticleSystem()->getEndSize();
+            auto getter = [this]()->int {
+                    return scene->getParticleSystem()->getEndSize();
+            };
             auto setter = [this](int val)->void{
                 scene->getParticleSystem()->setEndSize(val);
             };
-            setUIElementInt(widget, "endSize", value, setter);
+            setUIElementInt(widget, "endSize", getter, setter);
         }
 
         void ParticleController::setUIFinishSizeVar(QWidget* widget)
         {
             Q_ASSERT(scene);
 
-            int value = scene->getParticleSystem()->getEndSizeVar();
+            auto getter = [this]()->int {
+                    return scene->getParticleSystem()->getEndSizeVar();
+            };
             auto setter = [this](int val)->void{
                 scene->getParticleSystem()->setEndSizeVar(val);
             };
-            setUIElementInt(widget, "endSizeVar", value, setter);
+            setUIElementInt(widget, "endSizeVar", getter, setter);
         }
 
         void ParticleController::setUIEmitionAngle(QWidget* widget)
         {
             Q_ASSERT(scene);
 
-            float value = scene->getParticleSystem()->getAngle();
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem()->getAngle();
+            };
             auto setter = [this](int val)->void{
                 scene->getParticleSystem()->setAngle(val);
             };
-            setUIElementFloat(widget, "angleEmiton", value, setter);
+            setUIElementFloat(widget, "angleEmiton", getter, setter);
         }
 
         void ParticleController::setUIEmitionAngleVar(QWidget* widget)
         {
             Q_ASSERT(scene);
 
-            float value = scene->getParticleSystem()->getAngleVar();
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem()->getAngleVar();
+            };
             auto setter = [this](int val)->void{
                 scene->getParticleSystem()->setAngleVar(val);
             };
-            setUIElementFloat(widget, "angleEmitonVar", value, setter);
+            setUIElementFloat(widget, "angleEmitonVar", getter, setter);
         }
 
         void ParticleController::setUIRotationStart(QWidget* widget)
         {
             Q_ASSERT(scene);
 
-            int value = scene->getParticleSystem()->getStartSpin();
+            auto getter = [this]()->int {
+                    return scene->getParticleSystem()->getStartSpin();
+            };
             auto setter = [this](int val)->void{
                 scene->getParticleSystem()->setStartSpin(val);
             };
-            setUIElementInt(widget, "rotationStart", value, setter);
+            setUIElementInt(widget, "rotationStart", getter, setter);
         }
 
         void ParticleController::setUIRotationStartVar(QWidget* widget)
         {
             Q_ASSERT(scene);
 
-            int value = scene->getParticleSystem()->getStartSpinVar();
+            auto getter = [this]()->int {
+                    return scene->getParticleSystem()->getStartSpinVar();
+            };
             auto setter = [this](int val)->void{
                 scene->getParticleSystem()->setStartSpinVar(val);
             };
-            setUIElementInt(widget, "rotationStartVar", value, setter);
+            setUIElementInt(widget, "rotationStartVar", getter, setter);
         }
 
         void ParticleController::setUIRotationEnd(QWidget* widget)
         {
             Q_ASSERT(scene);
 
-            int value = scene->getParticleSystem()->getEndSpin();
+            auto getter = [this]()->int {
+                    return scene->getParticleSystem()->getEndSpin();;
+            };
             auto setter = [this](int val)->void{
                 scene->getParticleSystem()->setEndSpin(val);
             };
-            setUIElementInt(widget, "rotationEnd", value, setter);
+            setUIElementInt(widget, "rotationEnd", getter, setter);
         }
 
         void ParticleController::setUIRotationEndVar(QWidget* widget)
         {
             Q_ASSERT(scene);
 
-            int value = scene->getParticleSystem()->getEndSpinVar();
+            auto getter = [this]()->int {
+                    return scene->getParticleSystem()->getEndSpinVar();
+            };
             auto setter = [this](int val)->void{
                 scene->getParticleSystem()->setEndSpinVar(val);
             };
-            setUIElementInt(widget, "rotationEndVar", value, setter);
+            setUIElementInt(widget, "rotationEndVar", getter, setter);
         }
 
         void ParticleController::setUIStartColor(QWidget* widget)
@@ -347,13 +381,15 @@ namespace MelonGames {
 
             blendFunctionSourceWidget = widget;
 
-            int value = scene->getParticleSystem()->getBlendFunc().src;
+            auto getter = [this]() -> int {
+                    return (int)scene->getParticleSystem()->getBlendFunc().src;
+            };
             auto setter = [this](int val)->void{
                 cocos2d::BlendFunc blendFunc = scene->getParticleSystem()->getBlendFunc();
                 blendFunc.src = val;
                 scene->getParticleSystem()->setBlendFunc(blendFunc);
             };
-            setUIElementComboBox(widget, "blendFunctionCustom", value, setter);
+            setUIElementComboBox(widget, "blendFunctionCustom", getter, setter);
 
             updateBlendFunctionWidgets();
         }
@@ -364,13 +400,15 @@ namespace MelonGames {
 
             blendFunctionDestinationWidget = widget;
 
-            int value = scene->getParticleSystem()->getBlendFunc().dst;
+            auto getter = [this]() -> int {
+                    return (int)scene->getParticleSystem()->getBlendFunc().dst;
+            };
             auto setter = [this](int val)->void{
                 cocos2d::BlendFunc blendFunc = scene->getParticleSystem()->getBlendFunc();
                 blendFunc.dst = val;
                 scene->getParticleSystem()->setBlendFunc(blendFunc);
             };
-            setUIElementComboBox(widget, "blendFunctionCustom", value, setter);
+            setUIElementComboBox(widget, "blendFunctionCustom", getter, setter);
 
             updateBlendFunctionWidgets();
         }
@@ -411,7 +449,7 @@ namespace MelonGames {
             return QJsonObject();
         }
 
-        void ParticleController::setUIElementInt(QWidget* widget, const QString& key, int value, std::function<void(int)> setter)
+        void ParticleController::setUIElementInt(QWidget* widget, const QString& key, std::function<int(void)> getter, std::function<void(int)> setter)
         {
             EditorWidgets editors = getEditorWidgets(widget);
 
@@ -425,8 +463,13 @@ namespace MelonGames {
             editors.spinBox->setMinimum(min);
             editors.spinBox->setMaximum(max);
 
-            editors.slider->setValue(value);
-            editors.spinBox->setValue(value);
+            auto reloader = [getter, editors]()->void {
+                int value = getter();
+                editors.slider->setValue(value);
+                editors.spinBox->setValue(value);
+            };
+            reloadFunctions.push_back(reloader);
+            reloader();
 
             AttributeDescription* attributeDescriptionSlider = new AttributeDescription(this);
             attributeDescriptionSlider->callback = [editors, setter]() -> void {
@@ -449,7 +492,7 @@ namespace MelonGames {
             connect(editors.spinBox, SIGNAL(valueChanged(int)), signalMapper, SLOT(map()));
         }
 
-        void ParticleController::setUIElementFloat(QWidget* widget, const QString& key, float value, std::function<void(float)> setter)
+        void ParticleController::setUIElementFloat(QWidget* widget, const QString& key, std::function<float(void)> getter, std::function<void(float)> setter)
         {
             EditorWidgets editors = getEditorWidgets(widget);
             QJsonObject json = getAttributeDescription(key);
@@ -464,8 +507,13 @@ namespace MelonGames {
             editors.doubleSpinBox->setMaximum(max);
             editors.doubleSpinBox->setDecimals(std::log10(sliderScale));
 
-            editors.slider->setValue(value * sliderScale);
-            editors.doubleSpinBox->setValue(value);
+            auto reloader = [getter, editors, sliderScale]()->void {
+                float value = getter();
+                editors.slider->setValue(value * sliderScale);
+                editors.doubleSpinBox->setValue(value);
+            };
+            reloadFunctions.push_back(reloader);
+            reloader();
 
             AttributeDescription* attributeDescriptionSlider = new AttributeDescription(this);
             attributeDescriptionSlider->callback = [editors, sliderScale, setter]() -> void {
@@ -492,9 +540,13 @@ namespace MelonGames {
         {
             EditorWidgets editors = getEditorWidgets(widget);
 
-            const cocos2d::Color4F& value = getter();
-            QColor colorQ(value.r*255, value.g*255, value.b*255, value.a*255);
-            editors.colorButton->setStyleSheet(QString("background-color: %1").arg(colorQ.name()));
+            auto reloader = [getter, editors]()->void{
+                const cocos2d::Color4F& value = getter();
+                QColor colorQ(value.r*255, value.g*255, value.b*255, value.a*255);
+                editors.colorButton->setStyleSheet(QString("background-color: %1").arg(colorQ.name()));
+            };
+            reloadFunctions.push_back(reloader);
+            reloader();
 
             AttributeDescription* attributeDescription = new AttributeDescription(this);
             attributeDescription->callback = [getter, setter, editors]() -> void {
@@ -517,38 +569,46 @@ namespace MelonGames {
         }
 
 
-        void ParticleController::setUIElementComboBox(QWidget* widget, const QString& key, int value, std::function<void(int)> setter)
+        void ParticleController::setUIElementComboBox(QWidget* widget, const QString& key, std::function<int(void)> getter, std::function<void(int)> setter)
         {
             EditorWidgets editors = getEditorWidgets(widget);
             editors.comboBox->clear();
 
-            QList<int> values;
-
-            int selectedIndex = 0;
-            int i = 0;
             QJsonObject json = getAttributeDescription(key);
             for (const QJsonValue& jsonValue : json["values"].toArray())
             {
                 QJsonObject valueObj = jsonValue.toObject();
                 QString text = valueObj["name"].toString();
-                int intValue = valueObj["value"].toInt();
+                int intValue = jsonValue.toObject()["value"].toInt();
                 editors.comboBox->addItem(text, QVariant(intValue));
-
-                values.append(intValue);
-
-                if (intValue == value)
-                {
-                    selectedIndex = i;
-                }
-                ++i;
             }
 
-            editors.comboBox->setCurrentIndex(selectedIndex);
+            auto reloader = [this, key, getter, editors]() -> void {
+                int value = getter();
+                int selectedIndex = 0;
+                int i = 0;
+                QJsonObject json = getAttributeDescription(key);
+                for (const QJsonValue& jsonValue : json["values"].toArray())
+                {
+                    int intValue = jsonValue.toObject()["value"].toInt();
+                    if (intValue == value)
+                    {
+                        selectedIndex = i;
+                        break;
+                    }
+                    ++i;
+                }
+
+                editors.comboBox->setCurrentIndex(selectedIndex);
+            };
+            reloader();
+            reloadFunctions.push_back(reloader);
 
             AttributeDescription* attributeDescription = new AttributeDescription(this);
-            attributeDescription->callback = [editors, setter, values]() -> void {
+            attributeDescription->callback = [editors, setter, this, key]() -> void {
                 int index = editors.comboBox->currentIndex();
-                int value = values.at(index);
+                QJsonObject json = getAttributeDescription(key);
+                int value = json["values"].toArray().at(index).toObject()["value"].toInt();
                 setter(value);
             };
             signalMapper->setMapping(editors.comboBox, attributeDescription);
