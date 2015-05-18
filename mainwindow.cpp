@@ -115,7 +115,7 @@ void MainWindow::save()
     if (scene)
     {
         MelonGames::Particles::FileParser fileParser;
-        fileParser.save(path, scene->getParticleSystem(), "");
+        fileParser.save(path, scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY), "");
     }
 }
 
@@ -124,7 +124,7 @@ void MainWindow::load()
     if (scene)
     {
         MelonGames::Particles::FileParser fileParser;
-        fileParser.load(path, scene->getParticleSystem());
+        fileParser.load(path, scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY));
 
         particleController->reload();
     }

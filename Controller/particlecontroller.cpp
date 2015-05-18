@@ -62,7 +62,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getTotalParticles();
             };
             auto setter = [this](int val)->void{
-                scene->getParticleSystem()->setTotalParticles(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setTotalParticles(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setTotalParticles(val);
             };
             setUIElementInt(widget, "maxParticles", getter, setter);
         }
@@ -75,7 +76,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getLife();
             };
             auto setter = [this](int val)->void{
-                scene->getParticleSystem()->setLife(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setLife(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setLife(val);
             };
             setUIElementFloat(widget, "lifespan", getter, setter);
         }
@@ -88,7 +90,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getLifeVar();
             };
             auto setter = [this](int val)->void{
-                scene->getParticleSystem()->setLifeVar(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setLifeVar(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setLifeVar(val);
             };
             setUIElementFloat(widget, "lifespanVar", getter, setter);
         }
@@ -101,7 +104,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getStartSize();
             };
             auto setter = [this](int val)->void{
-                scene->getParticleSystem()->setStartSize(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setStartSize(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setStartSize(val);
             };
             setUIElementInt(widget, "startSize", getter, setter);
         }
@@ -114,7 +118,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getStartSizeVar();
             };
             auto setter = [this](int val)->void{
-                scene->getParticleSystem()->setStartSizeVar(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setStartSizeVar(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setStartSizeVar(val);
             };
             setUIElementInt(widget, "startSizeVar", getter, setter);
         }
@@ -127,7 +132,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getEndSize();
             };
             auto setter = [this](int val)->void{
-                scene->getParticleSystem()->setEndSize(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setEndSize(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setEndSize(val);
             };
             setUIElementInt(widget, "endSize", getter, setter);
         }
@@ -140,7 +146,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getEndSizeVar();
             };
             auto setter = [this](int val)->void{
-                scene->getParticleSystem()->setEndSizeVar(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setEndSizeVar(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setEndSizeVar(val);
             };
             setUIElementInt(widget, "endSizeVar", getter, setter);
         }
@@ -153,7 +160,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getAngle();
             };
             auto setter = [this](int val)->void{
-                scene->getParticleSystem()->setAngle(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setAngle(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setAngle(val);
             };
             setUIElementFloat(widget, "angleEmiton", getter, setter);
         }
@@ -166,7 +174,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getAngleVar();
             };
             auto setter = [this](int val)->void{
-                scene->getParticleSystem()->setAngleVar(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setAngleVar(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setAngleVar(val);
             };
             setUIElementFloat(widget, "angleEmitonVar", getter, setter);
         }
@@ -179,7 +188,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getStartSpin();
             };
             auto setter = [this](int val)->void{
-                scene->getParticleSystem()->setStartSpin(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setStartSpin(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setStartSpin(val);
             };
             setUIElementInt(widget, "rotationStart", getter, setter);
         }
@@ -192,7 +202,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getStartSpinVar();
             };
             auto setter = [this](int val)->void{
-                scene->getParticleSystem()->setStartSpinVar(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setStartSpinVar(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setStartSpinVar(val);
             };
             setUIElementInt(widget, "rotationStartVar", getter, setter);
         }
@@ -205,7 +216,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getEndSpin();;
             };
             auto setter = [this](int val)->void{
-                scene->getParticleSystem()->setEndSpin(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setEndSpin(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setEndSpin(val);
             };
             setUIElementInt(widget, "rotationEnd", getter, setter);
         }
@@ -218,7 +230,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getEndSpinVar();
             };
             auto setter = [this](int val)->void{
-                scene->getParticleSystem()->setEndSpinVar(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setEndSpinVar(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setEndSpinVar(val);
             };
             setUIElementInt(widget, "rotationEndVar", getter, setter);
         }
@@ -231,7 +244,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getStartColor();
         };
             auto setter = [this](const cocos2d::Color4F& value) -> void {
-                scene->getParticleSystem()->setStartColor(value);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setStartColor(value);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setStartColor(value);
             };
 
             setUIElementColor(widget, getter, setter);
@@ -245,7 +259,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getStartColorVar();
         };
             auto setter = [this](const cocos2d::Color4F& value) -> void {
-                scene->getParticleSystem()->setStartColorVar(value);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setStartColorVar(value);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setStartColorVar(value);
             };
 
             setUIElementColor(widget, getter, setter);
@@ -259,7 +274,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getEndColor();
         };
             auto setter = [this](const cocos2d::Color4F& value) -> void {
-                scene->getParticleSystem()->setEndColor(value);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setEndColor(value);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setEndColor(value);
             };
 
             setUIElementColor(widget, getter, setter);
@@ -273,7 +289,8 @@ namespace MelonGames {
                     return scene->getParticleSystem()->getEndColorVar();
         };
             auto setter = [this](const cocos2d::Color4F& value) -> void {
-                scene->getParticleSystem()->setEndColorVar(value);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setEndColorVar(value);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setEndColorVar(value);
             };
 
             setUIElementColor(widget, getter, setter);
@@ -360,7 +377,8 @@ namespace MelonGames {
                 cocos2d::BlendFunc blendFunc;
                 blendFunc.src = srcValue;
                 blendFunc.dst = dstValue;
-                scene->getParticleSystem()->setBlendFunc(blendFunc);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setBlendFunc(blendFunc);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setBlendFunc(blendFunc);
                 updateBlendFunctionWidgets();
             };
 
@@ -387,7 +405,8 @@ namespace MelonGames {
             auto setter = [this](int val)->void{
                 cocos2d::BlendFunc blendFunc = scene->getParticleSystem()->getBlendFunc();
                 blendFunc.src = val;
-                scene->getParticleSystem()->setBlendFunc(blendFunc);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setBlendFunc(blendFunc);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setBlendFunc(blendFunc);
             };
             setUIElementComboBox(widget, "blendFunctionCustom", getter, setter);
 
@@ -406,7 +425,8 @@ namespace MelonGames {
             auto setter = [this](int val)->void{
                 cocos2d::BlendFunc blendFunc = scene->getParticleSystem()->getBlendFunc();
                 blendFunc.dst = val;
-                scene->getParticleSystem()->setBlendFunc(blendFunc);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setBlendFunc(blendFunc);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setBlendFunc(blendFunc);
             };
             setUIElementComboBox(widget, "blendFunctionCustom", getter, setter);
 

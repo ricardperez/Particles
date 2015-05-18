@@ -13,106 +13,147 @@
 
 namespace MelonGames
 {
-namespace Particles
-{
-
-ParticlesScene* ParticlesScene::create()
-{
-    auto result = new ParticlesScene();
-    if (result && result->init())
+    namespace Particles
     {
-        result->autorelease();
-        return result;
+
+        ParticlesScene* ParticlesScene::create()
+        {
+            auto result = new ParticlesScene();
+            if (result && result->init())
+            {
+                result->autorelease();
+                return result;
+            }
+
+            delete result;
+            return nullptr;
+        }
+
+        ParticlesScene::ParticlesScene()
+            : eventsListener(nullptr)
+            , backgroundImage(nullptr)
+        {
+            particleSystems[0] = nullptr;
+            particleSystems[1] = nullptr;
+        }
+
+        ParticlesScene::~ParticlesScene()
+        {
+            if (eventsListener)
+            {
+                cocos2d::Director::getInstance()->getEventDispatcher()->removeEventListener(eventsListener);
+            }
+        }
+
+        bool ParticlesScene::init()
+        {
+            class ParticleFireRadius : public cocos2d::ParticleFire
+            {
+            public:
+                static ParticleFireRadius* create()
+                {
+                    ParticleFireRadius* result = new ParticleFireRadius();
+                    if (result && result->init())
+                    {
+                        result->_emitterMode = cocos2d::ParticleSystem::Mode::RADIUS;
+                        result->autorelease();
+                        return result;
+                    }
+
+                    delete result;
+                    return nullptr;
+                }
+            };
+
+            if (Scene::init())
+            {
+                particleSystems[0] = cocos2d::ParticleFire::create();
+                particleSystems[1] = ParticleFireRadius::create();
+
+                for (auto particleSystem : particleSystems)
+                {
+                    particleSystem->setPosition(getContentSize()*0.5f);
+                    addChild(particleSystem);
+                }
+
+                eventsListener = cocos2d::EventListenerTouchOneByOne::create();
+
+                eventsListener->onTouchBegan = [this](cocos2d::Touch* touch, cocos2d::Event* event) -> bool {
+                    updateParticleSystemPosition(touch);
+                    return true;
+                };
+
+                eventsListener->onTouchEnded = [this](cocos2d::Touch* touch, cocos2d::Event* event) -> void {
+                    updateParticleSystemPosition(touch);
+                };
+
+                eventsListener->onTouchCancelled = [this](cocos2d::Touch* touch, cocos2d::Event* event) -> void {
+                    updateParticleSystemPosition(touch);
+                };
+
+                eventsListener->onTouchMoved = [this](cocos2d::Touch* touch, cocos2d::Event* event) -> void {
+                    updateParticleSystemPosition(touch);
+                };
+
+                cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(eventsListener, 1);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        void ParticlesScene::clearBackgroundImage()
+        {
+            if (backgroundImage)
+            {
+                backgroundImage->removeFromParent();
+                backgroundImage = nullptr;
+            }
+        }
+
+        void ParticlesScene::setBackgroundImage(const std::string& imagePath)
+        {
+            clearBackgroundImage();
+            if (cocos2d::Texture2D* texture = cocos2d::Director::getInstance()->getTextureCache()->addImage(imagePath))
+            {
+                backgroundImage = cocos2d::Sprite::createWithTexture(texture);
+                addChild(backgroundImage, -1);
+                backgroundImage->setPosition(getContentSize()*0.5f);
+            }
+        }
+
+        cocos2d::ParticleSystemQuad* ParticlesScene::getParticleSystem()
+        {
+            return particleSystems[0];
+        }
+
+        cocos2d::ParticleSystemQuad* ParticlesScene::getParticleSystem(cocos2d::ParticleSystem::Mode mode)
+        {
+            switch (mode)
+            {
+                case cocos2d::ParticleSystem::Mode::GRAVITY:
+                    return particleSystems[0];
+                    break;
+                case cocos2d::ParticleSystem::Mode::RADIUS:
+                    return particleSystems[1];
+                    break;
+                default:
+                    return nullptr;
+                    break;
+            }
+        }
+
+        void ParticlesScene::updateParticleSystemPosition(cocos2d::Touch* touch)
+        {
+            for (auto particleSystem : particleSystems)
+            {
+                if (particleSystem)
+                {
+                    particleSystem->setPosition(touch->getLocation());
+                }
+            }
+        }
+
     }
-
-    delete result;
-    return nullptr;
-}
-
-ParticlesScene::ParticlesScene()
-    : eventsListener(nullptr)
-    , particleSystem(nullptr)
-    , backgroundImage(nullptr)
-{
-}
-
-ParticlesScene::~ParticlesScene()
-{
-    if (eventsListener)
-    {
-        cocos2d::Director::getInstance()->getEventDispatcher()->removeEventListener(eventsListener);
-    }
-}
-
-bool ParticlesScene::init()
-{
-    if (Scene::init())
-    {
-        //particleSystem = cocos2d::ParticleSystemQuad::create();
-        particleSystem = cocos2d::ParticleFire::create();
-        qDebug() << "Content size: (" << getContentSize().width << ", " << getContentSize().height << ")";
-        particleSystem->setPosition(getContentSize()*0.5f);
-        addChild(particleSystem);
-
-        eventsListener = cocos2d::EventListenerTouchOneByOne::create();
-
-        eventsListener->onTouchBegan = [this](cocos2d::Touch* touch, cocos2d::Event* event) -> bool {
-            updateParticleSystemPosition(touch);
-            return true;
-        };
-
-        eventsListener->onTouchEnded = [this](cocos2d::Touch* touch, cocos2d::Event* event) -> void {
-            updateParticleSystemPosition(touch);
-        };
-
-        eventsListener->onTouchCancelled = [this](cocos2d::Touch* touch, cocos2d::Event* event) -> void {
-            updateParticleSystemPosition(touch);
-        };
-
-        eventsListener->onTouchMoved = [this](cocos2d::Touch* touch, cocos2d::Event* event) -> void {
-            updateParticleSystemPosition(touch);
-        };
-
-        cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(eventsListener, 1);
-
-        return true;
-    }
-
-    return false;
-}
-
-void ParticlesScene::clearBackgroundImage()
-{
-    if (backgroundImage)
-    {
-        backgroundImage->removeFromParent();
-        backgroundImage = nullptr;
-    }
-}
-
-void ParticlesScene::setBackgroundImage(const std::string& imagePath)
-{
-    clearBackgroundImage();
-    if (cocos2d::Texture2D* texture = cocos2d::Director::getInstance()->getTextureCache()->addImage(imagePath))
-    {
-        backgroundImage = cocos2d::Sprite::createWithTexture(texture);
-        addChild(backgroundImage, -1);
-        backgroundImage->setPosition(getContentSize()*0.5f);
-    }
-}
-
-cocos2d::ParticleSystemQuad* ParticlesScene::getParticleSystem()
-{
-    return particleSystem;
-}
-
-void ParticlesScene::updateParticleSystemPosition(cocos2d::Touch* touch)
-{
-    if (particleSystem)
-    {
-        particleSystem->setPosition(touch->getLocation());
-    }
-}
-
-}
 }

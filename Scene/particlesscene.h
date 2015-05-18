@@ -2,43 +2,44 @@
 #define PARTICLESSCENE_H
 
 #include "2d/CCScene.h"
+#include "2d/CCParticleSystem.h"
 
 namespace cocos2d
 {
-class ParticleSystemQuad;
-class Sprite;
-class EventListenerTouchOneByOne;
+    class Sprite;
+    class EventListenerTouchOneByOne;
+    class ParticleSystemQuad;
 }
 
 namespace MelonGames
 {
-namespace Particles
-{
+    namespace Particles
+    {
+        class ParticlesScene : public cocos2d::Scene
+        {
+        public:
+            static ParticlesScene* create();
 
-class ParticlesScene : public cocos2d::Scene
-{
-public:
-    static ParticlesScene* create();
+            void clearBackgroundImage();
+            void setBackgroundImage(const std::string& imagePath);
 
-    void clearBackgroundImage();
-    void setBackgroundImage(const std::string& imagePath);
+            cocos2d::ParticleSystemQuad* getParticleSystem();
+            cocos2d::ParticleSystemQuad* getParticleSystem(cocos2d::ParticleSystem::Mode mode);
 
-    cocos2d::ParticleSystemQuad* getParticleSystem();
+        private:
+            ParticlesScene();
+            ~ParticlesScene();
 
-private:
-    ParticlesScene();
-    ~ParticlesScene();
+            bool init();
+            void updateParticleSystemPosition(cocos2d::Touch* touch);
 
-    bool init();
-    void updateParticleSystemPosition(cocos2d::Touch* touch);
+        private:
+            cocos2d::EventListenerTouchOneByOne* eventsListener;
+            cocos2d::ParticleSystemQuad* particleSystems[2];
+            cocos2d::Sprite* backgroundImage;
+        };
 
-private:
-    cocos2d::EventListenerTouchOneByOne* eventsListener;
-    cocos2d::ParticleSystemQuad* particleSystem;
-    cocos2d::Sprite* backgroundImage;
-};
-
-}
+    }
 }
 
 #endif // PARTICLESSCENE_H
