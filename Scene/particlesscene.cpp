@@ -67,8 +67,8 @@ namespace MelonGames
 
             if (Scene::init())
             {
-                particleSystems[0] = cocos2d::ParticleFire::create();
-                particleSystems[1] = ParticleFireRadius::create();
+                particleSystems[(int)cocos2d::ParticleSystem::Mode::GRAVITY] = cocos2d::ParticleFire::create();
+                particleSystems[(int)cocos2d::ParticleSystem::Mode::RADIUS] = ParticleFireRadius::create();
 
                 for (auto particleSystem : particleSystems)
                 {
@@ -125,23 +125,12 @@ namespace MelonGames
 
         cocos2d::ParticleSystemQuad* ParticlesScene::getParticleSystem()
         {
-            return particleSystems[0];
+            return particleSystems[(int)cocos2d::ParticleSystem::Mode::GRAVITY];
         }
 
         cocos2d::ParticleSystemQuad* ParticlesScene::getParticleSystem(cocos2d::ParticleSystem::Mode mode)
         {
-            switch (mode)
-            {
-                case cocos2d::ParticleSystem::Mode::GRAVITY:
-                    return particleSystems[0];
-                    break;
-                case cocos2d::ParticleSystem::Mode::RADIUS:
-                    return particleSystems[1];
-                    break;
-                default:
-                    return nullptr;
-                    break;
-            }
+            return particleSystems[(int)mode];
         }
 
         void ParticlesScene::updateParticleSystemPosition(cocos2d::Touch* touch)

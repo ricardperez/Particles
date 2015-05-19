@@ -55,6 +55,26 @@ public:
     void setUIBlendFunctionSource(QWidget* widget);
     void setUIBlendFunctionDestination(QWidget* widget);
 
+    //Mode GRAVITY
+    void setUIGravityX(QWidget* widget);
+    void setUIGravityY(QWidget* widget);
+    void setUISpeed(QWidget* widget);
+    void setUISpeedVar(QWidget* widget);
+    void setUITangentialAcceleration(QWidget* widget);
+    void setUITangentialAccelerationVar(QWidget* widget);
+    void setUIRadialAcceleration(QWidget* widget);
+    void setUIRadialAccelerationVar(QWidget* widget);
+    void setUIRotationIsDir(QWidget* widget);
+
+    //Mode RADIUS
+    void setUIStartRadius(QWidget* widget);
+    void setUIStartRadiusVar(QWidget* widget);
+    void setUIEndRadius(QWidget* widget);
+    void setUIEndRadiusVar(QWidget* widget);
+    void setUIRotatePerSecond(QWidget* widget);
+    void setUIRotatePerSecondVar(QWidget* widget);
+
+
 private slots:
     void valueChanged(QObject* object);
 
@@ -72,6 +92,7 @@ private:
 
     void setUIElementInt(QWidget* widget, const QString& key, std::function<int(void)> getter, std::function<void(int)> setter);
     void setUIElementFloat(QWidget* widget, const QString& key, std::function<float(void)> getter, std::function<void(float)> setter);
+    void setUIElementBool(QWidget* widget, const QString& key, std::function<bool(void)> getter, std::function<void(bool)> setter);
     void setUIElementColor(QWidget* widget, std::function<const cocos2d::Color4F&()> getter, std::function<void(const cocos2d::Color4F&)> setter);
     void setUIElementComboBox(QWidget* widget, const QString& key, std::function<int(void)> getter, std::function<void(int)> setter);
 

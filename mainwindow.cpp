@@ -26,9 +26,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->openGLWidget, SIGNAL(signalInitialized()), this, SLOT(onOpenGLReady()));
 
-    mainConfigFrameLayoutController = new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesMainConfigFrame, this);
-    colorsConfigFrameLayoutController = new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesColorsConfigFrame, this);
-    blendFunctionConfigFrameLayoutController = new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesBlendFunctionConfigFrame, this);
+    new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesMainConfigFrame, this);
+    new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesColorsConfigFrame, this);
+    new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesBlendFunctionConfigFrame, this);
+    new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesGravityConfigFrame, this);
+    new MelonGames::Particles::EditorsFrameLayoutController(ui->particlesRadiusConfigFrame, this);
 }
 
 MainWindow::~MainWindow()
@@ -108,6 +110,23 @@ void MainWindow::initParticleController()
     particleController->setUIBlendFunctionBuiltIn(ui->blendFunctionFrame);
     particleController->setUIBlendFunctionSource(ui->blendFunctionSourceFrame);
     particleController->setUIBlendFunctionDestination(ui->blendFunctionDestFrame);
+
+    particleController->setUIGravityX(ui->gravityXFrame);
+    particleController->setUIGravityY(ui->gravityYFrame);
+    particleController->setUISpeed(ui->speedFrame);
+    particleController->setUISpeedVar(ui->speedVarFrame);
+    particleController->setUITangentialAcceleration(ui->tangentialAccelFrame);
+    particleController->setUITangentialAccelerationVar(ui->tangentialAccelVarFrame);
+    particleController->setUIRadialAcceleration(ui->radialAccelFrame);
+    particleController->setUIRadialAccelerationVar(ui->radialAccelVarFrame);
+    particleController->setUIRotationIsDir(ui->rotationIsDirFrame);
+
+    particleController->setUIStartRadius(ui->startRadiusFrame);
+    particleController->setUIStartRadiusVar(ui->startRadiusVarFrame);
+    particleController->setUIEndRadius(ui->endRadiusFrame);
+    particleController->setUIEndRadiusVar(ui->endRadiusVarFrame);
+    particleController->setUIRotatePerSecond(ui->rotatePerSecondFrame);
+    particleController->setUIRotatePerSecondVar(ui->rotatePerSecondVarFrame);
 }
 
 void MainWindow::save()

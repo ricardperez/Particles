@@ -433,6 +433,205 @@ namespace MelonGames {
             updateBlendFunctionWidgets();
         }
 
+        //Mode GRAVITY
+        void ParticleController::setUIGravityX(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->getGravity().x;
+            };
+            auto setter = [this](float val)->void{
+                auto particleSystem = scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY);
+                particleSystem->setGravity(cocos2d::Vec2(val, particleSystem->getGravity().y));
+            };
+            setUIElementFloat(widget, "gravityX", getter, setter);
+        }
+
+        void ParticleController::setUIGravityY(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->getGravity().y;
+            };
+            auto setter = [this](float val)->void{
+                auto particleSystem = scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY);
+                particleSystem->setGravity(cocos2d::Vec2(particleSystem->getGravity().x, val));
+            };
+            setUIElementFloat(widget, "gravityY", getter, setter);
+        }
+
+        void ParticleController::setUISpeed(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->getSpeed();
+            };
+            auto setter = [this](float val)->void{
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setSpeed(val);
+            };
+            setUIElementFloat(widget, "speed", getter, setter);
+        }
+
+        void ParticleController::setUISpeedVar(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->getSpeedVar();
+            };
+            auto setter = [this](float val)->void{
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setSpeedVar(val);
+            };
+            setUIElementFloat(widget, "speedVar", getter, setter);
+        }
+
+        void ParticleController::setUITangentialAcceleration(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->getTangentialAccel();
+            };
+            auto setter = [this](float val)->void{
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setTangentialAccel(val);
+            };
+            setUIElementFloat(widget, "tangentialAccel", getter, setter);
+        }
+
+        void ParticleController::setUITangentialAccelerationVar(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->getTangentialAccelVar();
+            };
+            auto setter = [this](float val)->void{
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setTangentialAccelVar(val);
+            };
+            setUIElementFloat(widget, "tangentialAccelVar", getter, setter);
+        }
+
+        void ParticleController::setUIRadialAcceleration(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->getRadialAccel();
+            };
+            auto setter = [this](float val)->void{
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setRadialAccel(val);
+            };
+            setUIElementFloat(widget, "radialAccel", getter, setter);
+        }
+
+        void ParticleController::setUIRadialAccelerationVar(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->getRadialAccelVar();
+            };
+            auto setter = [this](float val)->void{
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setRadialAccelVar(val);
+            };
+            setUIElementFloat(widget, "radialAccelVar", getter, setter);
+        }
+
+        void ParticleController::setUIRotationIsDir(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->bool {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->getRotationIsDir();
+            };
+            auto setter = [this](bool val)->void{
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setRotationIsDir(val);
+            };
+            setUIElementBool(widget, "rotationIsDir", getter, setter);
+        }
+
+        //Mode RADIUS
+        void ParticleController::setUIStartRadius(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->getStartRadius();
+            };
+            auto setter = [this](float val)->void{
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setStartRadius(val);
+            };
+            setUIElementFloat(widget, "startRadius", getter, setter);
+        }
+
+        void ParticleController::setUIStartRadiusVar(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->getStartRadiusVar();
+            };
+            auto setter = [this](float val)->void{
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setStartRadiusVar(val);
+            };
+            setUIElementFloat(widget, "startRadiusVar", getter, setter);
+        }
+
+        void ParticleController::setUIEndRadius(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->getEndRadius();
+            };
+            auto setter = [this](float val)->void{
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setEndRadius(val);
+            };
+            setUIElementFloat(widget, "endRadius", getter, setter);
+        }
+
+        void ParticleController::setUIEndRadiusVar(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->getEndRadiusVar();
+            };
+            auto setter = [this](float val)->void{
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setEndRadiusVar(val);
+            };
+            setUIElementFloat(widget, "endRadiusVar", getter, setter);
+        }
+
+        void ParticleController::setUIRotatePerSecond(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->getRotatePerSecond();
+            };
+            auto setter = [this](float val)->void{
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setRotatePerSecond(val);
+            };
+            setUIElementFloat(widget, "rotatePerSecond", getter, setter);
+        }
+
+        void ParticleController::setUIRotatePerSecondVar(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->getRotatePerSecondVar();
+            };
+            auto setter = [this](float val)->void{
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setRotatePerSecondVar(val);
+            };
+            setUIElementFloat(widget, "rotatePerSecondVar", getter, setter);
+        }
+
         ParticleController::EditorWidgets ParticleController::getEditorWidgets(QWidget* widget) const
         {
             EditorWidgets result;
@@ -554,6 +753,12 @@ namespace MelonGames {
 
             connect(editors.slider, SIGNAL(sliderMoved(int)), signalMapper, SLOT(map()));
             connect(editors.doubleSpinBox, SIGNAL(valueChanged(double)), signalMapper, SLOT(map()));
+        }
+
+        void ParticleController::setUIElementBool(QWidget* widget, const QString& key, std::function<bool(void)> getter, std::function<void(bool)> setter)
+        {
+            //Q_ASSERT(false);
+            //TODO
         }
 
         void ParticleController::setUIElementColor(QWidget *widget, std::function<const cocos2d::Color4F&()> getter, std::function<void(const cocos2d::Color4F&)> setter)

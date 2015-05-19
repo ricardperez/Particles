@@ -56,10 +56,6 @@ private:
     MelonGames::Particles::BackgroundImageController* backgroundImageController;
     MelonGames::Particles::ParticleController* particleController;
 
-    MelonGames::Particles::EditorsFrameLayoutController* mainConfigFrameLayoutController;
-    MelonGames::Particles::EditorsFrameLayoutController* colorsConfigFrameLayoutController;
-    MelonGames::Particles::EditorsFrameLayoutController* blendFunctionConfigFrameLayoutController;
-
     QString path;
 };
 
