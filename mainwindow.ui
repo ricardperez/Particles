@@ -57,42 +57,7 @@
        <property name="sizeConstraint">
         <enum>QLayout::SetNoConstraint</enum>
        </property>
-       <item row="4" column="0">
-        <spacer name="editorVerticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Minimum</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="expandEditorButton">
-         <property name="minimumSize">
-          <size>
-           <width>40</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>115</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Expand</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
+       <item row="2" column="0">
         <widget class="QScrollArea" name="scrollArea">
          <property name="maximumSize">
           <size>
@@ -110,7 +75,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-890</y>
+            <y>-856</y>
             <width>357</width>
             <height>1830</height>
            </rect>
@@ -2915,6 +2880,67 @@
          </widget>
         </widget>
        </item>
+       <item row="3" column="0">
+        <spacer name="editorVerticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Minimum</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="0">
+        <widget class="QFrame" name="frame_4">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_15">
+          <item>
+           <widget class="QLabel" name="label_30">
+            <property name="text">
+             <string>Emitter mode</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="modeGravityRadioButton">
+            <property name="text">
+             <string>A. Gravity</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="modeRadiusRadioButton">
+            <property name="text">
+             <string>B. Radius</string>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
@@ -3284,10 +3310,43 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>modeGravityRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onModeRadioButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>210</x>
+     <y>104</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>829</x>
+     <y>545</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>modeRadiusRadioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onModeRadioButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>210</x>
+     <y>123</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>829</x>
+     <y>545</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onMenuFileOpen()</slot>
   <slot>onMenuFileSave()</slot>
   <slot>onMenuFileSaveAs()</slot>
+  <slot>onModeRadioButtonClicked()</slot>
  </slots>
 </ui>

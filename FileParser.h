@@ -4,6 +4,7 @@
 #include <QObject>
 #include <string>
 #include "base/CCValue.h"
+#include "2d/CCParticleSystem.h"
 
 namespace cocos2d
 {
@@ -20,15 +21,15 @@ namespace MelonGames {
             explicit FileParser(QObject *parent = 0);
             ~FileParser();
 
-            void load(const QString& filePath, cocos2d::ParticleSystemQuad* particleSystem);
-            void save(const QString& filePath, const cocos2d::ParticleSystemQuad* particleSystem, const std::string& textureFileName);
+            cocos2d::ParticleSystem::Mode load(const QString& filePath, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius);
+            void save(const QString& filePath, cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName);
 
         signals:
 
         public slots:
 
         private:
-            void convertParticleSystemToValueMap(const cocos2d::ParticleSystemQuad* particleSystem, const std::string& textureFileName, cocos2d::ValueMap& valueMap);
+            void convertParticleSystemToValueMap(cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName, cocos2d::ValueMap& valueMap);
         };
 
     } // namespace Particles

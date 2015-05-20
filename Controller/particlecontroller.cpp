@@ -550,7 +550,7 @@ namespace MelonGames {
             auto setter = [this](bool val)->void{
                 scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setRotationIsDir(val);
             };
-            setUIElementBool(widget, "rotationIsDir", getter, setter);
+            setUIElementBool(widget, getter, setter);
         }
 
         //Mode RADIUS
@@ -755,10 +755,30 @@ namespace MelonGames {
             connect(editors.doubleSpinBox, SIGNAL(valueChanged(double)), signalMapper, SLOT(map()));
         }
 
-        void ParticleController::setUIElementBool(QWidget* widget, const QString& key, std::function<bool(void)> getter, std::function<void(bool)> setter)
+        void ParticleController::setUIElementBool(QWidget* widget, std::function<bool(void)> getter, std::function<void(bool)> setter)
         {
-            //Q_ASSERT(false);
-            //TODO
+            EditorWidgets editors = getEditorWidgets(widget);
+
+            editors.comboBox->clear();
+            editors.comboBox->addItem("True", QVariant(true));
+            editors.comboBox->addItem("False", QVariant(false));
+
+            auto reloader = [getter, editors]()->void {
+                bool value = getter();
+                editors.comboBox->setCurrentIndex(value ? 0 : 1);
+            };
+            reloadFunctions.push_back(reloader);
+            reloader();
+
+            AttributeDescription* attributeDescription = new AttributeDescription(this);
+            attributeDescription->callback = [editors, setter]() -> void {
+                bool value = (editors.comboBox->currentIndex() == 0 ? true : false);
+                setter(value);
+            };
+
+            signalMapper->setMapping(editors.comboBox, attributeDescription);
+
+            connect(editors.comboBox, SIGNAL(currentIndexChanged(int)), signalMapper, SLOT(map()));;
         }
 
         void ParticleController::setUIElementColor(QWidget *widget, std::function<const cocos2d::Color4F&()> getter, std::function<void(const cocos2d::Color4F&)> setter)

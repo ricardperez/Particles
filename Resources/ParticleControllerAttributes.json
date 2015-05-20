@@ -143,5 +143,89 @@
 				"value": 776
 			}
 		]
+	},
+	{
+		"id": "gravityX",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 10
+	},
+	{
+		"id": "gravityY",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "speed",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "speedVar",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "tangentialAccel",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "tangentialAccelVar",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "radialAccel",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "radialAccelVar",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "startRadius",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "startRadiusVar",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "endRadius",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "endRadiusVar",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "rotatePerSecond",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 100
+	},
+	{
+		"id": "rotatePerSecondVar",
+		"min": -3000.0,
+		"max": 3000.0,
+		"sliderScale": 100
 	}
 ]

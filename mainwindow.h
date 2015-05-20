@@ -30,16 +30,15 @@ public:
 
 private slots:
     void onOpenGLReady();
-    void on_expandEditorButton_clicked();
 
     void on_expandOptionsButton_clicked();
+    void onModeRadioButtonClicked();
 
     void onMenuFileOpen();
     void onMenuFileSave();
     void onMenuFileSaveAs();
 
 private:
-    void updateScrollExpanded();
     void updateOptionsExpanded();
     void initBackgroundImageController();
     void initParticleController();
@@ -47,9 +46,10 @@ private:
     void save();
     void load();
 
+    void updateEmitterMode();
+
 private:
     Ui::MainWindow *ui;
-    bool scrollExpanded;
     bool optionsExpanded;
 
     MelonGames::Particles::ParticlesScene* scene;

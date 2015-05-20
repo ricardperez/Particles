@@ -92,7 +92,7 @@ private:
 
     void setUIElementInt(QWidget* widget, const QString& key, std::function<int(void)> getter, std::function<void(int)> setter);
     void setUIElementFloat(QWidget* widget, const QString& key, std::function<float(void)> getter, std::function<void(float)> setter);
-    void setUIElementBool(QWidget* widget, const QString& key, std::function<bool(void)> getter, std::function<void(bool)> setter);
+    void setUIElementBool(QWidget* widget, std::function<bool(void)> getter, std::function<void(bool)> setter);
     void setUIElementColor(QWidget* widget, std::function<const cocos2d::Color4F&()> getter, std::function<void(const cocos2d::Color4F&)> setter);
     void setUIElementComboBox(QWidget* widget, const QString& key, std::function<int(void)> getter, std::function<void(int)> setter);
 

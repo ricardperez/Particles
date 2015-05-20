@@ -6,6 +6,7 @@
 #include "Controller/particlecontroller.h"
 #include "editorsframelayoutcontroller.h"
 #include "base/CCDirector.h"
+#include "2d/CCParticleSystemQuad.h"
 #include "FileParser.h"
 #include <QFileDialog>
 #include <QDebug>
@@ -13,7 +14,6 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
-  , scrollExpanded(true)
   , scene(nullptr)
   , optionsExpanded(false)
   , backgroundImageController(nullptr)
@@ -21,7 +21,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    updateScrollExpanded();
     updateOptionsExpanded();
 
     connect(ui->openGLWidget, SIGNAL(signalInitialized()), this, SLOT(onOpenGLReady()));
@@ -46,26 +45,10 @@ void MainWindow::onOpenGLReady()
     scene = MelonGames::Particles::ParticlesScene::create();
     cocos2d::Director::getInstance()->runWithScene(scene);
 
+    updateEmitterMode();
+
     initBackgroundImageController();
     initParticleController();
-}
-
-void MainWindow::on_expandEditorButton_clicked()
-{
-    scrollExpanded = !scrollExpanded;
-    updateScrollExpanded();
-}
-
-void MainWindow::updateScrollExpanded()
-{
-    QSizePolicy::Policy spacerPolicy = (scrollExpanded ? QSizePolicy::Ignored : QSizePolicy::MinimumExpanding);
-    ui->editorVerticalSpacer->changeSize(0, 0, spacerPolicy, spacerPolicy);
-
-    ui->scrollArea->setVisible(scrollExpanded);
-    ui->editorFrame->setMinimumWidth(scrollExpanded ? 400.0f : 120.0f);
-    ui->editorFrame->setMaximumWidth(scrollExpanded ? 400.0f : 120.0f);
-
-    ui->expandEditorButton->setText(scrollExpanded ? "Hide editor" : "Show editor");
 }
 
 void MainWindow::updateOptionsExpanded()
@@ -134,7 +117,9 @@ void MainWindow::save()
     if (scene)
     {
         MelonGames::Particles::FileParser fileParser;
-        fileParser.save(path, scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY), "");
+
+        auto selectedMode = (ui->modeGravityRadioButton->isChecked() ? cocos2d::ParticleSystem::Mode::GRAVITY : cocos2d::ParticleSystem::Mode::RADIUS);
+        fileParser.save(path, selectedMode, scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY), scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS), "");
     }
 }
 
@@ -143,9 +128,30 @@ void MainWindow::load()
     if (scene)
     {
         MelonGames::Particles::FileParser fileParser;
-        fileParser.load(path, scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY));
+        auto selectedMode = fileParser.load(path, scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY), scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS));
+
+        bool isGravity = (selectedMode == cocos2d::ParticleSystem::Mode::GRAVITY);
+        ui->modeGravityRadioButton->setChecked(isGravity);
+        ui->modeRadiusRadioButton->setChecked(!isGravity);
+
+        updateEmitterMode();
 
         particleController->reload();
+    }
+}
+
+void MainWindow::updateEmitterMode()
+{
+    if (scene)
+    {
+        auto selectedMode = (ui->modeGravityRadioButton->isChecked() ? cocos2d::ParticleSystem::Mode::GRAVITY : cocos2d::ParticleSystem::Mode::RADIUS);
+        bool isGravity = (selectedMode == cocos2d::ParticleSystem::Mode::GRAVITY);
+
+        scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setVisible(isGravity);
+        scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setVisible(!isGravity);
+
+        ui->particlesGravityConfigFrame->setVisible(isGravity);
+        ui->particlesRadiusConfigFrame->setVisible(!isGravity);
     }
 }
 
@@ -153,6 +159,11 @@ void MainWindow::on_expandOptionsButton_clicked()
 {
     optionsExpanded = !optionsExpanded;
     updateOptionsExpanded();
+}
+
+void MainWindow::onModeRadioButtonClicked()
+{
+    updateEmitterMode();
 }
 
 void MainWindow::onMenuFileOpen()
