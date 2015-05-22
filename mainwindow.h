@@ -5,19 +5,19 @@
 
 namespace MelonGames
 {
-namespace Particles
-{
+    namespace Particles
+    {
 
-class ParticlesScene;
-class BackgroundImageController;
-class ParticleController;
-class EditorsFrameLayoutController;
+        class ParticlesScene;
+        class BackgroundController;
+        class ParticleController;
+        class EditorsFrameLayoutController;
 
-}
+    }
 }
 
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -31,7 +31,6 @@ public:
 private slots:
     void onOpenGLReady();
 
-    void on_expandOptionsButton_clicked();
     void onModeRadioButtonClicked();
 
     void onMenuFileOpen();
@@ -39,8 +38,7 @@ private slots:
     void onMenuFileSaveAs();
 
 private:
-    void updateOptionsExpanded();
-    void initBackgroundImageController();
+    void initBackgroundController();
     void initParticleController();
 
     void save();
@@ -50,10 +48,9 @@ private:
 
 private:
     Ui::MainWindow *ui;
-    bool optionsExpanded;
 
     MelonGames::Particles::ParticlesScene* scene;
-    MelonGames::Particles::BackgroundImageController* backgroundImageController;
+    MelonGames::Particles::BackgroundController* backgroundController;
     MelonGames::Particles::ParticleController* particleController;
 
     QString path;

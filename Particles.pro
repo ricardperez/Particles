@@ -215,9 +215,9 @@ SOURCES += main.cpp\
     CocosBridge/CCApplication-Qt.cpp \
     Scene/particlesscene.cpp \
     Controller/particlecontroller.cpp \
-    Controller/backgroundimagecontroller.cpp \
     editorsframelayoutcontroller.cpp \
-    FileParser.cpp
+    FileParser.cpp \
+    Controller/BackgroundController.cpp
 
 HEADERS  += mainwindow.h \
     libs/jsoncpp/src/lib_json/json_batchallocator.h \
@@ -454,9 +454,9 @@ HEADERS  += mainwindow.h \
     CocosBridge/CCApplication-Qt.h \
     Scene/particlesscene.h \
     Controller/particlecontroller.h \
-    Controller/backgroundimagecontroller.h \
     editorsframelayoutcontroller.h \
-    FileParser.h
+    FileParser.h \
+    Controller/BackgroundController.h
 
 FORMS    += mainwindow.ui
 

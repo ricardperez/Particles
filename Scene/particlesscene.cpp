@@ -4,6 +4,8 @@
 #include "2d/CCParticleSystemQuad.h"
 #include "2d/CCParticleExamples.h"
 #include "2d/CCSprite.h"
+#include "2d/CCDrawNode.h"
+#include "2d/CCActionInterval.h"
 #include "renderer/CCTextureCache.h"
 #include "renderer/CCTexture2D.h"
 #include "base/CCEventListenerTouch.h"
@@ -30,8 +32,10 @@ namespace MelonGames
         }
 
         ParticlesScene::ParticlesScene()
-            : eventsListener(nullptr)
+            : backgroundLayer(nullptr)
+            , eventsListener(nullptr)
             , backgroundImage(nullptr)
+            , particlesParentNode(nullptr)
         {
             particleSystems[0] = nullptr;
             particleSystems[1] = nullptr;
@@ -67,13 +71,20 @@ namespace MelonGames
 
             if (Scene::init())
             {
+                backgroundLayer = cocos2d::LayerColor::create(cocos2d::Color4B::BLACK);
+                addChild(backgroundLayer);
+
                 particleSystems[(int)cocos2d::ParticleSystem::Mode::GRAVITY] = cocos2d::ParticleFire::create();
                 particleSystems[(int)cocos2d::ParticleSystem::Mode::RADIUS] = ParticleFireRadius::create();
 
+                particlesParentNode = cocos2d::DrawNode::create();
+                particlesParentNode->setPosition(getContentSize()*0.5f);
+                backgroundLayer->addChild(particlesParentNode);
+
                 for (auto particleSystem : particleSystems)
                 {
-                    particleSystem->setPosition(getContentSize()*0.5f);
-                    addChild(particleSystem);
+                    particleSystem->setPosition(cocos2d::Vec2::ZERO);
+                    particlesParentNode->addChild(particleSystem);
                 }
 
                 eventsListener = cocos2d::EventListenerTouchOneByOne::create();
@@ -135,12 +146,28 @@ namespace MelonGames
 
         void ParticlesScene::updateParticleSystemPosition(cocos2d::Touch* touch)
         {
-            for (auto particleSystem : particleSystems)
+            if (particlesParentNode)
             {
-                if (particleSystem)
-                {
-                    particleSystem->setPosition(touch->getLocation());
-                }
+                particlesParentNode->setPosition(touch->getLocation());
+            }
+        }
+
+        void ParticlesScene::animate(bool truthiness)
+        {
+            if (truthiness)
+            {
+                particlesParentNode->drawRect(cocos2d::Vec2(-100.0f, -100.0f), cocos2d::Vec2(100.0f, 100.0f), cocos2d::Color4F::GRAY);
+                float movement = getContentSize().width * 0.5f;
+                float speed = 200.0f;
+                float time = movement / speed;
+                particlesParentNode->runAction(cocos2d::RepeatForever::create(cocos2d::Sequence::create(cocos2d::MoveBy::create(time, cocos2d::Vec2(movement, 0.0f)),
+                                                                                           cocos2d::MoveBy::create(time, cocos2d::Vec2(-movement, 0.0f)),
+                                                                                           nullptr)));
+            }
+            else
+            {
+                particlesParentNode->clear();
+                particlesParentNode->stopAllActions();
             }
         }
 

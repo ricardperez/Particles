@@ -68,7 +68,8 @@ namespace MelonGames {
                 sourcePosition.x = valueMap["sourcePositionX"].asFloat();
                 sourcePosition.y = valueMap["sourcePositionY"].asFloat();
                 particleSystem->setSourcePosition(sourcePosition);
-                particleSystem->setPosition(sourcePosition);
+                //particleSystem->setPosition(sourcePosition);
+                particleSystem->getParent()->setPosition(sourcePosition);
 
                 cocos2d::Vec2 sourcePositionVar;
                 sourcePositionVar.x = valueMap["sourcePositionVariancex"].asFloat();
@@ -161,8 +162,10 @@ namespace MelonGames {
             valueMap["finishParticleSize"] = particleSystemGravity->getEndSize();
             valueMap["finishParticleSizeVariance"] = particleSystemGravity->getEndSizeVar();
 
-            valueMap["sourcePositionX"] = particleSystemGravity->getPositionX();
-            valueMap["sourcePositiony"] = particleSystemGravity->getPositionY();
+            //valueMap["sourcePositionX"] = particleSystemGravity->getPositionX();
+            //valueMap["sourcePositiony"] = particleSystemGravity->getPositionY();
+            valueMap["sourcePositionX"] = particleSystemGravity->getParent()->getPositionX();
+            valueMap["sourcePositiony"] = particleSystemGravity->getParent()->getPositionY();
             valueMap["sourcePositionVariancex"] = particleSystemGravity->getPosVar().x;
             valueMap["sourcePositionVariancey"] = particleSystemGravity->getPosVar().y;
 

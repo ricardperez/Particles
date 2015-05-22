@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "Scene/particlesscene.h"
-#include "Controller/backgroundimagecontroller.h"
+#include "Controller/BackgroundController.h"
 #include "Controller/particlecontroller.h"
 #include "editorsframelayoutcontroller.h"
 #include "base/CCDirector.h"
@@ -15,13 +15,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
   , scene(nullptr)
-  , optionsExpanded(false)
-  , backgroundImageController(nullptr)
+  , backgroundController(nullptr)
   , particleController(nullptr)
 {
     ui->setupUi(this);
-
-    updateOptionsExpanded();
 
     connect(ui->openGLWidget, SIGNAL(signalInitialized()), this, SLOT(onOpenGLReady()));
 
@@ -35,9 +32,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-
-    delete particleController;
-    delete backgroundImageController;
 }
 
 void MainWindow::onOpenGLReady()
@@ -47,28 +41,29 @@ void MainWindow::onOpenGLReady()
 
     updateEmitterMode();
 
-    initBackgroundImageController();
+    initBackgroundController();
     initParticleController();
 }
 
-void MainWindow::updateOptionsExpanded()
+void MainWindow::initBackgroundController()
 {
-    ui->optionsFrame->setVisible(optionsExpanded);
-    ui->expandOptionsButton->setText(optionsExpanded ? "Hide options" : "Show options");
-}
+    backgroundController = new MelonGames::Particles::BackgroundController(this);
+    backgroundController->setParticlesScene(scene);
 
-void MainWindow::initBackgroundImageController()
-{
-    backgroundImageController = new MelonGames::Particles::BackgroundImageController();
-    backgroundImageController->setParticlesScene(scene);
-    backgroundImageController->setChangeImageButton(ui->backgroundImageSelectButton);
-    backgroundImageController->setImageNameLabel(ui->backgroundImageNameLabel);
-    backgroundImageController->update();
+    backgroundController->setChangeImageButton(ui->backgroundImageSelectButton);
+    backgroundController->setImageNameLabel(ui->backgroundImageNameLabel);
+
+    backgroundController->setColorButton(ui->backgroundColorButton);
+
+    backgroundController->setPositionTypeOptions(ui->positionTypeFreeRadioButton, ui->positionTypeRelativeRadioButton, ui->positionTypeGroupedRadioButton);
+    backgroundController->setPositionTypeTest(ui->positionTypeTestButton);
+
+    backgroundController->update();
 }
 
 void MainWindow::initParticleController()
 {
-    particleController = new MelonGames::Particles::ParticleController();
+    particleController = new MelonGames::Particles::ParticleController(this);
 
     particleController->setParticlesScene(scene);
     particleController->setUIMaxParticles(ui->maxParticlesFrame);
@@ -153,12 +148,6 @@ void MainWindow::updateEmitterMode()
         ui->particlesGravityConfigFrame->setVisible(isGravity);
         ui->particlesRadiusConfigFrame->setVisible(!isGravity);
     }
-}
-
-void MainWindow::on_expandOptionsButton_clicked()
-{
-    optionsExpanded = !optionsExpanded;
-    updateOptionsExpanded();
 }
 
 void MainWindow::onModeRadioButtonClicked()
