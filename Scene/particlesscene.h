@@ -22,6 +22,8 @@ namespace MelonGames
         public:
             static ParticlesScene* create();
 
+            void reset();
+
             void clearBackgroundImage();
             void setBackgroundImage(const std::string& imagePath);
 

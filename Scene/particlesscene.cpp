@@ -17,6 +17,23 @@ namespace MelonGames
 {
     namespace Particles
     {
+        class ParticleFireRadius : public cocos2d::ParticleFire
+        {
+        public:
+            static ParticleFireRadius* create()
+            {
+                ParticleFireRadius* result = new ParticleFireRadius();
+                if (result && result->init())
+                {
+                    result->_emitterMode = cocos2d::ParticleSystem::Mode::RADIUS;
+                    result->autorelease();
+                    return result;
+                }
+
+                delete result;
+                return nullptr;
+            }
+        };
 
         ParticlesScene* ParticlesScene::create()
         {
@@ -51,24 +68,6 @@ namespace MelonGames
 
         bool ParticlesScene::init()
         {
-            class ParticleFireRadius : public cocos2d::ParticleFire
-            {
-            public:
-                static ParticleFireRadius* create()
-                {
-                    ParticleFireRadius* result = new ParticleFireRadius();
-                    if (result && result->init())
-                    {
-                        result->_emitterMode = cocos2d::ParticleSystem::Mode::RADIUS;
-                        result->autorelease();
-                        return result;
-                    }
-
-                    delete result;
-                    return nullptr;
-                }
-            };
-
             if (Scene::init())
             {
                 backgroundLayer = cocos2d::LayerColor::create(cocos2d::Color4B::BLACK);
@@ -78,13 +77,15 @@ namespace MelonGames
                 particleSystems[(int)cocos2d::ParticleSystem::Mode::RADIUS] = ParticleFireRadius::create();
 
                 particlesParentNode = cocos2d::DrawNode::create();
+                particlesParentNode->drawRect(cocos2d::Vec2(-100.0f, -100.0f), cocos2d::Vec2(100.0f, 100.0f), cocos2d::Color4F::GRAY);
+
                 particlesParentNode->setPosition(getContentSize()*0.5f);
-                backgroundLayer->addChild(particlesParentNode);
+                backgroundLayer->addChild(particlesParentNode, 1);
 
                 for (auto particleSystem : particleSystems)
                 {
-                    particleSystem->setPosition(cocos2d::Vec2::ZERO);
                     particlesParentNode->addChild(particleSystem);
+                    particleSystem->setPosition(cocos2d::Vec2::ZERO);
                 }
 
                 eventsListener = cocos2d::EventListenerTouchOneByOne::create();
@@ -114,6 +115,28 @@ namespace MelonGames
             return false;
         }
 
+        void ParticlesScene::reset()
+        {
+            clearBackgroundImage();
+            animate(false);
+
+            for (auto particleSystem : particleSystems)
+            {
+                particleSystem->removeFromParent();
+            }
+
+            particleSystems[(int)cocos2d::ParticleSystem::Mode::GRAVITY] = cocos2d::ParticleFire::create();
+            particleSystems[(int)cocos2d::ParticleSystem::Mode::RADIUS] = ParticleFireRadius::create();
+
+            for (auto particleSystem : particleSystems)
+            {
+                particlesParentNode->addChild(particleSystem);
+                particleSystem->setPosition(cocos2d::Vec2::ZERO);
+            }
+
+            particlesParentNode->setPosition(getContentSize() * 0.5f);
+        }
+
         void ParticlesScene::clearBackgroundImage()
         {
             if (backgroundImage)
@@ -129,7 +152,7 @@ namespace MelonGames
             if (cocos2d::Texture2D* texture = cocos2d::Director::getInstance()->getTextureCache()->addImage(imagePath))
             {
                 backgroundImage = cocos2d::Sprite::createWithTexture(texture);
-                addChild(backgroundImage, -1);
+                backgroundLayer->addChild(backgroundImage, 0);
                 backgroundImage->setPosition(getContentSize()*0.5f);
             }
         }
@@ -156,7 +179,7 @@ namespace MelonGames
         {
             if (truthiness)
             {
-                particlesParentNode->drawRect(cocos2d::Vec2(-100.0f, -100.0f), cocos2d::Vec2(100.0f, 100.0f), cocos2d::Color4F::GRAY);
+//                particlesParentNode->drawRect(cocos2d::Vec2(-100.0f, -100.0f), cocos2d::Vec2(100.0f, 100.0f), cocos2d::Color4F::GRAY);
                 float movement = getContentSize().width * 0.5f;
                 float speed = 200.0f;
                 float time = movement / speed;
@@ -166,7 +189,7 @@ namespace MelonGames
             }
             else
             {
-                particlesParentNode->clear();
+//                particlesParentNode->clear();
                 particlesParentNode->stopAllActions();
             }
         }

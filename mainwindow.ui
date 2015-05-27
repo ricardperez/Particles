@@ -3244,6 +3244,7 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_as"/>
@@ -3290,6 +3291,14 @@
   <action name="actionBackground_color">
    <property name="text">
     <string>Background color</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>
@@ -3383,11 +3392,28 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionNew</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onMenuFileNew()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>829</x>
+     <y>545</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onMenuFileOpen()</slot>
   <slot>onMenuFileSave()</slot>
   <slot>onMenuFileSaveAs()</slot>
   <slot>onModeRadioButtonClicked()</slot>
+  <slot>onMenuFileNew()</slot>
  </slots>
 </ui>

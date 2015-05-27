@@ -33,6 +33,7 @@ private slots:
 
     void onModeRadioButtonClicked();
 
+    void onMenuFileNew();
     void onMenuFileOpen();
     void onMenuFileSave();
     void onMenuFileSaveAs();

@@ -155,6 +155,16 @@ void MainWindow::onModeRadioButtonClicked()
     updateEmitterMode();
 }
 
+void MainWindow::onMenuFileNew()
+{
+    if (scene)
+    {
+        scene->reset();
+        updateEmitterMode();
+        particleController->reload();
+    }
+}
+
 void MainWindow::onMenuFileOpen()
 {
     QString path = QFileDialog::getOpenFileName(this, "Open particle system", "", "PLIST (*.plist)");
