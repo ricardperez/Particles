@@ -4,6 +4,7 @@
 #include "Scene/particlesscene.h"
 #include "Controller/BackgroundController.h"
 #include "Controller/particlecontroller.h"
+#include "Controller/TextureController.h"
 #include "editorsframelayoutcontroller.h"
 #include "base/CCDirector.h"
 #include "2d/CCParticleSystemQuad.h"
@@ -17,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
   , scene(nullptr)
   , backgroundController(nullptr)
   , particleController(nullptr)
+  , textureController(nullptr)
 {
     ui->setupUi(this);
 
@@ -43,6 +45,7 @@ void MainWindow::onOpenGLReady()
 
     initBackgroundController();
     initParticleController();
+    initTextureController();
 }
 
 void MainWindow::initBackgroundController()
@@ -105,6 +108,13 @@ void MainWindow::initParticleController()
     particleController->setUIEndRadiusVar(ui->endRadiusVarFrame);
     particleController->setUIRotatePerSecond(ui->rotatePerSecondFrame);
     particleController->setUIRotatePerSecondVar(ui->rotatePerSecondVarFrame);
+}
+
+void MainWindow::initTextureController()
+{
+    textureController = new MelonGames::Particles::TextureController(this);
+
+    textureController->setUIWidgets(ui->textureImage, ui->textureEmbeddedRadioButton, ui->textureExternalRadioButton);
 }
 
 void MainWindow::save()

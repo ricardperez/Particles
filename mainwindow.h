@@ -7,12 +7,11 @@ namespace MelonGames
 {
     namespace Particles
     {
-
         class ParticlesScene;
         class BackgroundController;
         class ParticleController;
         class EditorsFrameLayoutController;
-
+        class TextureController;
     }
 }
 
@@ -41,6 +40,7 @@ private slots:
 private:
     void initBackgroundController();
     void initParticleController();
+    void initTextureController();
 
     void save();
     void load();
@@ -53,6 +53,7 @@ private:
     MelonGames::Particles::ParticlesScene* scene;
     MelonGames::Particles::BackgroundController* backgroundController;
     MelonGames::Particles::ParticleController* particleController;
+    MelonGames::Particles::TextureController* textureController;
 
     QString path;
 };

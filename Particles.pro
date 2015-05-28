@@ -217,7 +217,8 @@ SOURCES += main.cpp\
     Controller/particlecontroller.cpp \
     editorsframelayoutcontroller.cpp \
     FileParser.cpp \
-    Controller/BackgroundController.cpp
+    Controller/BackgroundController.cpp \
+    Controller/TextureController.cpp
 
 HEADERS  += mainwindow.h \
     libs/jsoncpp/src/lib_json/json_batchallocator.h \
@@ -456,7 +457,8 @@ HEADERS  += mainwindow.h \
     Controller/particlecontroller.h \
     editorsframelayoutcontroller.h \
     FileParser.h \
-    Controller/BackgroundController.h
+    Controller/BackgroundController.h \
+    Controller/TextureController.h
 
 FORMS    += mainwindow.ui
 
