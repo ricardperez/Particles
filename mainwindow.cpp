@@ -127,9 +127,9 @@ void MainWindow::save()
         auto selectedMode = (ui->modeGravityRadioButton->isChecked() ? cocos2d::ParticleSystem::Mode::GRAVITY : cocos2d::ParticleSystem::Mode::RADIUS);
 
         QString texturePath;
-        const QImage* textureImage = textureController->getTextureImage(texturePath);
         bool textureEmbedded = textureController->isTextureEmbedded();
-        fileParser.save(path, selectedMode, scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY), scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS), texturePath.toStdString(), textureImage, textureEmbedded);
+        const QImage* textureImage = (textureEmbedded ? textureController->getTextureImage(texturePath) : nullptr);
+        fileParser.save(path, selectedMode, scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY), scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS), texturePath.toStdString(), textureImage);
     }
 }
 

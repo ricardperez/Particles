@@ -7,6 +7,7 @@
 #include <QJsonArray>
 #include <QGridLayout>
 #include <QEvent>
+#include <QFileDialog>
 
 namespace MelonGames {
     namespace Particles {
@@ -60,7 +61,11 @@ namespace MelonGames {
 
         void TextureSelectorUI::on_pushButton_clicked()
         {
-
+            QString path = QFileDialog::getOpenFileName(this, "Open image file", "", "PNG (*.png)");
+            if (!path.isEmpty())
+            {
+                addTexture(path, false);
+            }
         }
 
         void TextureSelectorUI::loadTextures()
@@ -100,6 +105,7 @@ namespace MelonGames {
             label->setMinimumSize(pixmapsSize);
             label->setMaximumSize(pixmapsSize);
             label->setPixmap(texture.pixmap);
+            label->setStyleSheet("border: 1px solid");
 
             int itemIndex = (textures.size() - 1);
             int column = (itemIndex % nColumns);

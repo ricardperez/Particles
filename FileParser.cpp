@@ -199,23 +199,15 @@ namespace MelonGames {
             return mode;
         }
 
-        void FileParser::save(const QString& filePath, cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName, const QImage* texture, bool embedTexture)
+        void FileParser::save(const QString& filePath, cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName, const QImage* texture)
         {
             cocos2d::ValueMap valueMap;
-            convertParticleSystemToValueMap(mode, particleSystemGravity, particleSystemRadius, textureFileName, texture, embedTexture, valueMap);
+            convertParticleSystemToValueMap(mode, particleSystemGravity, particleSystemRadius, textureFileName, texture, valueMap);
 
             cocos2d::FileUtils::getInstance()->writeToFile(valueMap, filePath.toUtf8().constData());
-
-            if (!embedTexture)
-            {
-                QStringList pathParts = filePath.split(".");
-                pathParts.removeLast();
-                QString texturePath = (pathParts.join(".") + ".png");
-                texture->save(texturePath, "PNG");
-            }
         }
 
-        void FileParser::convertParticleSystemToValueMap(cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName, const QImage* texture, bool embedTexture, cocos2d::ValueMap &valueMap)
+        void FileParser::convertParticleSystemToValueMap(cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName, const QImage* texture, cocos2d::ValueMap &valueMap)
         {
             valueMap["maxParticles"] = particleSystemGravity->getTotalParticles();
             valueMap["angle"] = particleSystemGravity->getAngle();
@@ -287,7 +279,7 @@ namespace MelonGames {
 
             valueMap["yCoordFlipped"] = 1;
 
-            if (embedTexture)
+            if (texture != nullptr)
             {
                 QByteArray byteArray;
                 QBuffer buffer(&byteArray);
