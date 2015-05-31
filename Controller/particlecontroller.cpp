@@ -9,6 +9,7 @@
 #include <QColorDialog>
 #include <QRgb>
 #include <QDebug>
+#include "platform/CCFileUtils.h"
 
 namespace MelonGames {
     namespace Particles {
@@ -25,7 +26,8 @@ namespace MelonGames {
             , blendFunctionSourceWidget(nullptr)
             , blendFunctionDestinationWidget(nullptr)
         {
-            QFile file("://ParticleControllerAttributes.json");
+            std::string jsonFilePath = cocos2d::FileUtils::getInstance()->fullPathForFilename("ParticleControllerAttributes.json");
+            QFile file(jsonFilePath.c_str());
             file.open(QIODevice::ReadOnly | QIODevice::Text);
             QByteArray fileContents = file.readAll();
             file.close();
@@ -68,6 +70,38 @@ namespace MelonGames {
             setUIElementInt(widget, "maxParticles", getter, setter);
         }
 
+        void ParticleController::setUIPositionXVar(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->int {
+                    return scene->getParticleSystem()->getPosVar().x;
+            };
+            auto setter = [this](int val)->void{
+                cocos2d::Vec2 position = scene->getParticleSystem()->getPosVar();
+                position.x = val;
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setPosVar(position);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setPosVar(position);
+            };
+            setUIElementInt(widget, "posVarX", getter, setter);
+        }
+
+        void ParticleController::setUIPositionYVar(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->int {
+                    return scene->getParticleSystem()->getPosVar().y;
+            };
+            auto setter = [this](int val)->void{
+                cocos2d::Vec2 position = scene->getParticleSystem()->getPosVar();
+                position.y = val;
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setPosVar(position);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setPosVar(position);
+            };
+            setUIElementInt(widget, "posVarY", getter, setter);
+        }
+
         void ParticleController::setUILifespan(QWidget* widget)
         {
             Q_ASSERT(scene);
@@ -75,7 +109,7 @@ namespace MelonGames {
             auto getter = [this]()->float {
                     return scene->getParticleSystem()->getLife();
             };
-            auto setter = [this](int val)->void{
+            auto setter = [this](float val)->void{
                 scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setLife(val);
                 scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setLife(val);
             };
@@ -676,32 +710,33 @@ namespace MelonGames {
 
             const int min = json["min"].toInt();
             const int max = json["max"].toInt();
+            const double sliderScale = (json.contains("sliderScale") ? json["sliderScale"].toDouble() : 1.0f);
 
-            editors.slider->setMinimum(min);
-            editors.slider->setMaximum(max);
+            editors.slider->setMinimum(min*sliderScale);
+            editors.slider->setMaximum(max*sliderScale);
             editors.spinBox->setMinimum(min);
             editors.spinBox->setMaximum(max);
 
-            auto reloader = [getter, editors]()->void {
+            auto reloader = [getter, editors, sliderScale]()->void {
                 int value = getter();
-                editors.slider->setValue(value);
+                editors.slider->setValue(value * sliderScale);
                 editors.spinBox->setValue(value);
             };
             reloadFunctions.push_back(reloader);
             reloader();
 
             AttributeDescription* attributeDescriptionSlider = new AttributeDescription(this);
-            attributeDescriptionSlider->callback = [editors, setter]() -> void {
-                int value = editors.slider->value();
+            attributeDescriptionSlider->callback = [editors, setter, sliderScale]() -> void {
+                int value = editors.slider->value() / sliderScale;
                 setter(value);
                 editors.spinBox->setValue(value);
             };
 
             AttributeDescription* attributeDescriptionSpinBox = new AttributeDescription(this);
-            attributeDescriptionSpinBox->callback = [editors, setter]() -> void {
+            attributeDescriptionSpinBox->callback = [editors, setter, sliderScale]() -> void {
                 int value = editors.spinBox->value();
                 setter(value);
-                editors.slider->setValue(value);
+                editors.slider->setValue(value * sliderScale);
             };
 
             signalMapper->setMapping(editors.slider, attributeDescriptionSlider);
@@ -718,9 +753,9 @@ namespace MelonGames {
 
             const double min = json["min"].toDouble();
             const double max = json["max"].toDouble();
-            const double sliderScale = json["sliderScale"].toDouble();
+            const double sliderScale = (json.contains("sliderScale") ? json["sliderScale"].toDouble() : 1.0f);
 
-            editors.slider->setMinimum(min);
+            editors.slider->setMinimum(min*sliderScale);
             editors.slider->setMaximum(max*sliderScale);
             editors.doubleSpinBox->setMinimum(min);
             editors.doubleSpinBox->setMaximum(max);

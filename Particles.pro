@@ -562,9 +562,12 @@ OBJECTIVE_SOURCES += \
     libs/cocos2d/cocos/platform/mac/CCDevice-mac.mm \
     libs/cocos2d/cocos/base/CCUserDefault-apple.mm
 
-RESOURCES += \
-    Resources/resources.qrc
+RESOURCES +=
 
-ImageFiles.files = Resources/images
-ImageFiles.path = Contents/Resources
-QMAKE_BUNDLE_DATA += ImageFiles
+ResourcesFiles.files = Resources/images
+ResourcesFiles.files += Resources/ImagesList.json
+ResourcesFiles.files += Resources/ParticleControllerAttributes.json
+ResourcesFiles.path = Contents/Resources
+QMAKE_BUNDLE_DATA += ResourcesFiles
+
+

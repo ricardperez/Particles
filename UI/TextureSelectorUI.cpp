@@ -8,6 +8,7 @@
 #include <QGridLayout>
 #include <QEvent>
 #include <QFileDialog>
+#include "platform/CCFileUtils.h"
 
 namespace MelonGames {
     namespace Particles {
@@ -64,13 +65,14 @@ namespace MelonGames {
             QString path = QFileDialog::getOpenFileName(this, "Open image file", "", "PNG (*.png)");
             if (!path.isEmpty())
             {
-                addTexture(path, false);
+                addTexture(path);
             }
         }
 
         void TextureSelectorUI::loadTextures()
         {
-            QFile file("://ImagesList.json");
+            std::string jsonFilePath = cocos2d::FileUtils::getInstance()->fullPathForFilename("ImagesList.json");
+            QFile file(jsonFilePath.c_str());
             file.open(QIODevice::ReadOnly | QIODevice::Text);
             QByteArray fileContents = file.readAll();
             file.close();
@@ -79,7 +81,7 @@ namespace MelonGames {
             for (QJsonValue imageJson : imagesArray)
             {
                 QString imageName = imageJson.toString();
-                addTexture(imageName, true);
+                addTexture(imageName);
             }
 
             if (!textures.isEmpty())
@@ -89,11 +91,11 @@ namespace MelonGames {
             }
         }
 
-        void TextureSelectorUI::addTexture(const QString& imageName, bool internal)
+        void TextureSelectorUI::addTexture(const QString& imageName)
         {
             const int nColumns = 5;
 
-            QString qPath = (internal ? (":/images/" + imageName) : imageName);
+            QString qPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(imageName.toStdString()).c_str();
             QImage image(qPath);
             Texture texture;
             texture.image = image;

@@ -38,7 +38,7 @@ namespace MelonGames {
 
         private:
             void loadTextures();
-            void addTexture(const QString& imageName, bool internal);
+            void addTexture(const QString& imageName);
 
         private:
             Ui::TextureSelectorUI *ui;

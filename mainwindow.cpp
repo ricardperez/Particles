@@ -77,6 +77,8 @@ void MainWindow::initParticleController()
 
     particleController->setParticlesScene(scene);
     particleController->setUIMaxParticles(ui->maxParticlesFrame);
+    particleController->setUIPositionXVar(ui->posXVarFrame);
+    particleController->setUIPositionYVar(ui->posYVarFrame);
     particleController->setUILifespan(ui->lifespanFrame);
     particleController->setUILifespanVar(ui->lifespanVarFrame);
     particleController->setUIStartSize(ui->startSizeFrame);

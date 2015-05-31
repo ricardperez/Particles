@@ -33,6 +33,8 @@ public:
     void reload();
 
     void setUIMaxParticles(QWidget* widget);
+    void setUIPositionXVar(QWidget* widget);
+    void setUIPositionYVar(QWidget* widget);
     void setUILifespan(QWidget* widget);
     void setUILifespanVar(QWidget* widget);
     void setUIStartSize(QWidget* widget);

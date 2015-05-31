@@ -5,6 +5,18 @@
 		"max": 2000
 	},
 	{
+		"id": "posVarX",
+		"min": 0,
+		"max": 2000,
+		"sliderScale": 20
+	},
+	{
+		"id": "posVarY",
+		"min": 0,
+		"max": 2000,
+		"sliderScale": 20
+	},
+	{
 		"id": "lifespan",
 		"min": 0.0,
 		"max": 10.0,
