@@ -38,6 +38,8 @@ private slots:
     void onMenuFileSaveAs();
 
 private:
+    void closeEvent(QCloseEvent* event) override;
+
     void initBackgroundController();
     void initParticleController();
     void initTextureController();

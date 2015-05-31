@@ -28,6 +28,8 @@ namespace MelonGames {
             bool isTextureEmbedded() const;
             const QImage* getTextureImage(QString& outPath) const;
 
+            void closeUI();
+
         private slots:
             void onSelectedTextureChanged(TextureSelectorUI* textureSelector);
 

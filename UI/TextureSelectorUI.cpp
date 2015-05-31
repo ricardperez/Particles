@@ -105,7 +105,7 @@ namespace MelonGames {
             label->setMinimumSize(pixmapsSize);
             label->setMaximumSize(pixmapsSize);
             label->setPixmap(texture.pixmap);
-            label->setStyleSheet("border: 1px solid");
+            label->setStyleSheet("border: 1px solid; background-color:rgb(200, 200, 200)");
 
             int itemIndex = (textures.size() - 1);
             int column = (itemIndex % nColumns);

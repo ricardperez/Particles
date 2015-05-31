@@ -19,7 +19,6 @@ namespace MelonGames {
             , scene(nullptr)
         {
             textureSelector = new TextureSelectorUI();
-            textureSelector->show();
             connect(textureSelector, SIGNAL(onSelectedTextureChanged(TextureSelectorUI*)), this, SLOT(onSelectedTextureChanged(TextureSelectorUI*)));
             onSelectedTextureChanged(textureSelector);
         }
@@ -36,6 +35,8 @@ namespace MelonGames {
             this->externalRadioButton = externalRadioButton;
 
             imageLabel->installEventFilter(this);
+
+            imageLabel->setStyleSheet("border: 1px solid; background-color:rgb(200, 200, 200)");
         }
 
         void TextureController::registerParticlesScene(ParticlesScene* scene)
@@ -61,12 +62,19 @@ namespace MelonGames {
             return nullptr;
         }
 
+        void TextureController::closeUI()
+        {
+            textureSelector->close();
+            textureSelector = nullptr;
+        }
+
         bool TextureController::eventFilter(QObject* watched, QEvent* event)
         {
             if (watched == imageLabel)
             {
                 if (event->type() == QEvent::MouseButtonPress)
                 {
+                    textureSelector->show();
                     textureSelector->raise();
                 }
             }

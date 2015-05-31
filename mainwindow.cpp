@@ -11,6 +11,7 @@
 #include "FileParser.h"
 #include <QFileDialog>
 #include <QDebug>
+#include <QCloseEvent>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -46,6 +47,12 @@ void MainWindow::onOpenGLReady()
     initBackgroundController();
     initParticleController();
     initTextureController();
+}
+
+void MainWindow::closeEvent(QCloseEvent* event)
+{
+    textureController->closeUI();
+    close();
 }
 
 void MainWindow::initBackgroundController()
