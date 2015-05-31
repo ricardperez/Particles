@@ -1,9 +1,11 @@
 #include "TextureController.h"
+#include "UI/TextureSelectorUI.h"
 #include <QDebug>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonValue>
-#include <QJsonArray>
+#include <QEvent>
+#include "Scene/particlesscene.h"
+#include "2d/CCParticleSystemQuad.h"
+#include "renderer/CCTextureCache.h"
+#include "base/CCDirector.h"
 
 namespace MelonGames {
     namespace Particles {
@@ -13,7 +15,13 @@ namespace MelonGames {
             , imageLabel(nullptr)
             , embeddedRadioButton(nullptr)
             , externalRadioButton(nullptr)
+            , textureSelector(nullptr)
+            , scene(nullptr)
         {
+            textureSelector = new TextureSelectorUI();
+            textureSelector->show();
+            connect(textureSelector, SIGNAL(onSelectedTextureChanged(TextureSelectorUI*)), this, SLOT(onSelectedTextureChanged(TextureSelectorUI*)));
+            onSelectedTextureChanged(textureSelector);
         }
 
         TextureController::~TextureController()
@@ -27,40 +35,59 @@ namespace MelonGames {
             this->embeddedRadioButton = embeddedRadioButton;
             this->externalRadioButton = externalRadioButton;
 
-            connect(embeddedRadioButton, SIGNAL(clicked()), this, SLOT(onRadioButtonClicked()));
-            connect(externalRadioButton, SIGNAL(clicked()), this, SLOT(onRadioButtonClicked()));
-
-            loadPixmaps();
-
-            reload();
+            imageLabel->installEventFilter(this);
         }
 
-        void TextureController::onRadioButtonClicked()
+        void TextureController::registerParticlesScene(ParticlesScene* scene)
         {
-            qDebug() << "Hey!";
+            this->scene = scene;
+
+            onSelectedTextureChanged(textureSelector);
         }
 
-        void TextureController::loadPixmaps()
+        bool TextureController::isTextureEmbedded() const
         {
-            Q_ASSERT(imageLabel != nullptr && "Need the imageLabel to know the size the pixmaps need to be scaled to");
+            return (embeddedRadioButton->isChecked());
+        }
 
-            QFile file("://ImagesList.json");
-            file.open(QIODevice::ReadOnly | QIODevice::Text);
-            QByteArray fileContents = file.readAll();
-            file.close();
-
-            QJsonArray imagesArray = QJsonDocument::fromJson(fileContents).array();
-            for (QJsonValue imageJson : imagesArray)
+        const QImage* TextureController::getTextureImage(QString& outPath) const
+        {
+            if (const TextureSelectorUI::Texture* texture = textureSelector->getSelectedTexture())
             {
-                QString imageName = imageJson.toString();
-                QImage image(imageName);
-                pixmaps.push_back(QPixmap::fromImage(image).scaled(imageLabel->size(), Qt::KeepAspectRatio));
+                outPath = texture->path;
+                return &(texture->image);
             }
+
+            return nullptr;
         }
 
-        void TextureController::reload()
+        bool TextureController::eventFilter(QObject* watched, QEvent* event)
         {
-            imageLabel->setPixmap(pixmaps.front());
+            if (watched == imageLabel)
+            {
+                if (event->type() == QEvent::MouseButtonPress)
+                {
+                    textureSelector->raise();
+                }
+            }
+
+            return false;
+        }
+
+        void TextureController::onSelectedTextureChanged(TextureSelectorUI* textureSelector)
+        {
+            if (scene)
+            {
+                const TextureSelectorUI::Texture* texture = textureSelector->getSelectedTexture();
+                if (texture)
+                {
+                    imageLabel->setPixmap(texture->pixmap.scaled(imageLabel->size(), Qt::KeepAspectRatio));
+
+                    cocos2d::Texture2D* cocosTexture = cocos2d::Director::getInstance()->getTextureCache()->addImage(texture->path.toStdString());
+                    scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setTexture(cocosTexture);
+                    scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setTexture(cocosTexture);
+                }
+            }
         }
 
     } // namespace Particles

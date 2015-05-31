@@ -218,7 +218,8 @@ SOURCES += main.cpp\
     editorsframelayoutcontroller.cpp \
     FileParser.cpp \
     Controller/BackgroundController.cpp \
-    Controller/TextureController.cpp
+    Controller/TextureController.cpp \
+    UI/TextureSelectorUI.cpp
 
 HEADERS  += mainwindow.h \
     libs/jsoncpp/src/lib_json/json_batchallocator.h \
@@ -458,9 +459,11 @@ HEADERS  += mainwindow.h \
     editorsframelayoutcontroller.h \
     FileParser.h \
     Controller/BackgroundController.h \
-    Controller/TextureController.h
+    Controller/TextureController.h \
+    UI/TextureSelectorUI.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    UI/TextureSelectorUI.ui
 
 DEFINES += \
     USE_FILE32API \
@@ -491,7 +494,6 @@ LIBS += \
     -L$$PWD/libs/cocos2d/external/jpeg/prebuilt/mac -ljpeg \
     -L$$PWD/libs/cocos2d/external/freetype2/prebuilt/mac -lfreetype \
     -L$$PWD/libs/cocos2d/external/chipmunk/prebuilt/mac -lchipmunk \
-#    -L$$PWD/libs/cocos2d/external/glfw3/prebuilt/mac -lglfw3 \
 
 INCLUDEPATH += \
     libs/jsoncpp/include \
@@ -509,7 +511,6 @@ INCLUDEPATH += \
     libs/cocos2d/external/xxhash \
     libs/cocos2d/external/xxtea \
     libs/cocos2d/external/chipmunk/include/chipmunk \
-#    libs/cocos2d/external/glfw3/include/mac \
     libs/cocos2d/external/sqlite3/include \
 
 DEPENDPATH += \
@@ -519,7 +520,6 @@ DEPENDPATH += \
     $$PWD/libs/cocos2d/external/jpeg/prebuilt/mac \
     $$PWD/libs/cocos2d/external/freetype2/prebuilt/mac \
     $$PWD/libs/cocos2d/external/chipmunk/prebuilt/mac \
-#    $$PWD/libs/cocos2d/external/glfw3/prebuilt/mac \
 
 
 DISTFILES += \
@@ -564,3 +564,7 @@ OBJECTIVE_SOURCES += \
 
 RESOURCES += \
     Resources/resources.qrc
+
+ImageFiles.files = Resources/images
+ImageFiles.path = Contents/Resources
+QMAKE_BUNDLE_DATA += ImageFiles

@@ -115,6 +115,7 @@ void MainWindow::initTextureController()
     textureController = new MelonGames::Particles::TextureController(this);
 
     textureController->setUIWidgets(ui->textureImage, ui->textureEmbeddedRadioButton, ui->textureExternalRadioButton);
+    textureController->registerParticlesScene(scene);
 }
 
 void MainWindow::save()
@@ -124,7 +125,11 @@ void MainWindow::save()
         MelonGames::Particles::FileParser fileParser;
 
         auto selectedMode = (ui->modeGravityRadioButton->isChecked() ? cocos2d::ParticleSystem::Mode::GRAVITY : cocos2d::ParticleSystem::Mode::RADIUS);
-        fileParser.save(path, selectedMode, scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY), scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS), "");
+
+        QString texturePath;
+        const QImage* textureImage = textureController->getTextureImage(texturePath);
+        bool textureEmbedded = textureController->isTextureEmbedded();
+        fileParser.save(path, selectedMode, scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY), scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS), texturePath.toStdString(), textureImage, textureEmbedded);
     }
 }
 

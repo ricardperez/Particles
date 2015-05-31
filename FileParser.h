@@ -22,14 +22,14 @@ namespace MelonGames {
             ~FileParser();
 
             cocos2d::ParticleSystem::Mode load(const QString& filePath, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius);
-            void save(const QString& filePath, cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName);
+            void save(const QString& filePath, cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName, const QImage* texture, bool embedTexture);
 
         signals:
 
         public slots:
 
         private:
-            void convertParticleSystemToValueMap(cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName, cocos2d::ValueMap& valueMap);
+            void convertParticleSystemToValueMap(cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName, const QImage* texture, bool embedTexture, cocos2d::ValueMap& valueMap);
         };
 
     } // namespace Particles

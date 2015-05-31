@@ -10,6 +10,8 @@
 namespace MelonGames {
     namespace Particles {
 
+        class TextureSelectorUI;
+        class ParticlesScene;
         class TextureController : public QObject
         {
             Q_OBJECT
@@ -19,21 +21,24 @@ namespace MelonGames {
 
             void setUIWidgets(QLabel* imageLabel, QRadioButton* embeddedRadioButton, QRadioButton* externalRadioButton);
 
-        signals:
+            bool eventFilter(QObject *, QEvent *) override;
 
-        public slots:
-            void onRadioButtonClicked();
+            void registerParticlesScene(ParticlesScene* scene);
 
-        private:
-            void loadPixmaps();
-            void reload();
+            bool isTextureEmbedded() const;
+            const QImage* getTextureImage(QString& outPath) const;
+
+        private slots:
+            void onSelectedTextureChanged(TextureSelectorUI* textureSelector);
 
         private:
             QLabel* imageLabel;
             QRadioButton* embeddedRadioButton;
             QRadioButton* externalRadioButton;
 
-            QVector<QPixmap> pixmaps;
+            TextureSelectorUI* textureSelector;
+
+            ParticlesScene* scene;
         };
 
     } // namespace Particles

@@ -1,9 +1,64 @@
 #include "FileParser.h"
 #include "platform/CCFileUtils.h"
 #include "2d/CCParticleSystemQuad.h"
+#include <QImage>
+#include <QByteArray>
+#include <QBuffer>
+#include <QStringList>
+#include "base/base64.h"
+#include "base/ZipUtils.h"
+#include "platform/CCImage.h"
+#include "base/CCDirector.h"
+#include "renderer/CCTextureCache.h"
+#include <QDebug>
+#include <zlib.h>
 
 namespace MelonGames {
     namespace Particles {
+
+        void compress_data(const QByteArray& input, QByteArray& output)
+        {
+            const size_t BUFSIZE = 128 * 1024;
+            uint8_t temp_buffer[BUFSIZE];
+
+            z_stream strm;
+            strm.zalloc = 0;
+            strm.zfree = 0;
+            strm.next_in = (Bytef*)input.data();
+            strm.avail_in = input.length();
+            strm.next_out = temp_buffer;
+            strm.avail_out = BUFSIZE;
+
+            deflateInit(&strm, Z_BEST_COMPRESSION);
+
+            while (strm.avail_in != 0)
+            {
+                int res = deflate(&strm, Z_NO_FLUSH);
+                assert(res == Z_OK);
+                if (strm.avail_out == 0)
+                {
+                    output.append((const char*)temp_buffer, BUFSIZE);
+                    strm.next_out = temp_buffer;
+                    strm.avail_out = BUFSIZE;
+                }
+            }
+
+            int deflate_res = Z_OK;
+            while (deflate_res == Z_OK)
+            {
+                if (strm.avail_out == 0)
+                {
+                    output.append((const char*)temp_buffer, BUFSIZE);
+                    strm.next_out = temp_buffer;
+                    strm.avail_out = BUFSIZE;
+                }
+                deflate_res = deflate(&strm, Z_FINISH);
+            }
+
+            assert(deflate_res == Z_STREAM_END);
+            output.append((const char*)temp_buffer, (BUFSIZE - strm.avail_out));
+            deflateEnd(&strm);
+        }
 
         FileParser::FileParser(QObject *parent) : QObject(parent)
         {
@@ -115,20 +170,52 @@ namespace MelonGames {
             loadParticleLambda(particleSystemGravity, cocos2d::ParticleSystem::Mode::GRAVITY);
             loadParticleLambda(particleSystemRadius, cocos2d::ParticleSystem::Mode::RADIUS);
 
+            std::string textureName = valueMap["textureFileName"].asString();
+            std::string textureData = valueMap.at("textureImageData").asString();
+            auto dataLen = textureData.size();
+            if (dataLen != 0)
+            {
+                unsigned char* buffer = nullptr;
+                int decodeLen = cocos2d::base64Decode((unsigned char*)textureData.c_str(), (unsigned int)dataLen, &buffer);
+                CCASSERT( buffer != nullptr, "CCParticleSystem: error decoding textureImageData");
+
+                unsigned char* deflated = nullptr;
+                ssize_t deflatedLen = cocos2d::ZipUtils::inflateMemory(buffer, decodeLen, &deflated);
+                CCASSERT( deflated != nullptr, "CCParticleSystem: error ungzipping textureImageData");
+
+                cocos2d::Image* image = new (std::nothrow) cocos2d::Image();
+                bool isOK = image->initWithImageData(deflated, deflatedLen);
+                CCASSERT(isOK, "CCParticleSystem: error init image with Data");
+
+                cocos2d::Texture2D* texture = cocos2d::Director::getInstance()->getTextureCache()->addImage(image, textureName.c_str());
+                particleSystemGravity->setTexture(texture);
+                particleSystemRadius->setTexture(texture);
+
+                image->release();
+            }
+
             auto mode = (cocos2d::ParticleSystem::Mode)valueMap["emitterType"].asInt();
 
             return mode;
         }
 
-        void FileParser::save(const QString& filePath, cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName)
+        void FileParser::save(const QString& filePath, cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName, const QImage* texture, bool embedTexture)
         {
             cocos2d::ValueMap valueMap;
-            convertParticleSystemToValueMap(mode, particleSystemGravity, particleSystemRadius, textureFileName, valueMap);
+            convertParticleSystemToValueMap(mode, particleSystemGravity, particleSystemRadius, textureFileName, texture, embedTexture, valueMap);
 
             cocos2d::FileUtils::getInstance()->writeToFile(valueMap, filePath.toUtf8().constData());
+
+            if (!embedTexture)
+            {
+                QStringList pathParts = filePath.split(".");
+                pathParts.removeLast();
+                QString texturePath = (pathParts.join(".") + ".png");
+                texture->save(texturePath, "PNG");
+            }
         }
 
-        void FileParser::convertParticleSystemToValueMap(cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName, cocos2d::ValueMap &valueMap)
+        void FileParser::convertParticleSystemToValueMap(cocos2d::ParticleSystem::Mode mode, cocos2d::ParticleSystemQuad* particleSystemGravity, cocos2d::ParticleSystemQuad* particleSystemRadius, const std::string& textureFileName, const QImage* texture, bool embedTexture, cocos2d::ValueMap &valueMap)
         {
             valueMap["maxParticles"] = particleSystemGravity->getTotalParticles();
             valueMap["angle"] = particleSystemGravity->getAngle();
@@ -199,6 +286,18 @@ namespace MelonGames {
             valueMap["textureImageData"] = "";
 
             valueMap["yCoordFlipped"] = 1;
+
+            if (embedTexture)
+            {
+                QByteArray byteArray;
+                QBuffer buffer(&byteArray);
+                texture->save(&buffer, "PNG");
+
+                QByteArray compressedData;
+                compress_data(byteArray, compressedData);
+
+                valueMap["textureImageData"] = std::string(compressedData.toBase64().data());
+            }
         }
 
     } // namespace Particles
