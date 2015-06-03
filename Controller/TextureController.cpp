@@ -64,8 +64,11 @@ namespace MelonGames {
 
         void TextureController::closeUI()
         {
-            textureSelector->close();
-            textureSelector = nullptr;
+            if (textureSelector)
+            {
+                textureSelector->close();
+                textureSelector = nullptr;
+            }
         }
 
         bool TextureController::eventFilter(QObject* watched, QEvent* event)
