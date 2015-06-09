@@ -122,7 +122,7 @@ namespace MelonGames {
                 cocos2d::Vec2 sourcePosition;
                 sourcePosition.x = valueMap["sourcePositionX"].asFloat();
                 sourcePosition.y = valueMap["sourcePositionY"].asFloat();
-//                particleSystem->setSourcePosition(sourcePosition);
+                //                particleSystem->setSourcePosition(sourcePosition);
                 particleSystem->getParent()->setPosition(sourcePosition);
 
                 cocos2d::Vec2 sourcePositionVar;
@@ -158,10 +158,10 @@ namespace MelonGames {
                 {
                     particleSystem->setEmitterMode(cocos2d::ParticleSystem::Mode::RADIUS);
 
-                    particleSystem->setStartRadius(valueMap["maxRadius"].asFloat());
-                    particleSystem->setStartRadiusVar(valueMap["maxRadiusVariance"].asFloat());
-                    particleSystem->setEndRadius(valueMap["minRadius"].asFloat());
-                    particleSystem->setEndRadiusVar(valueMap["minRadiusVariance"].asFloat());
+                    particleSystem->setStartRadius(valueMap["minRadius"].asFloat());
+                    particleSystem->setStartRadiusVar(valueMap["minRadiusVariance"].asFloat());
+                    particleSystem->setEndRadius(valueMap["maxRadius"].asFloat());
+                    particleSystem->setEndRadiusVar(valueMap["maxRadiusVariance"].asFloat());
                     particleSystem->setRotatePerSecond(valueMap["rotatePerSecond"].asFloat());
                     particleSystem->setRotatePerSecondVar(valueMap["rotatePerSecondVariance"].asFloat());
                 }
@@ -171,27 +171,32 @@ namespace MelonGames {
             loadParticleLambda(particleSystemRadius, cocos2d::ParticleSystem::Mode::RADIUS);
 
             std::string textureName = valueMap["textureFileName"].asString();
-            std::string textureData = valueMap.at("textureImageData").asString();
-            auto dataLen = textureData.size();
-            if (dataLen != 0)
+
+            auto imageDataIt = valueMap.find("textureImageData");
+            if (imageDataIt != valueMap.end())
             {
-                unsigned char* buffer = nullptr;
-                int decodeLen = cocos2d::base64Decode((unsigned char*)textureData.c_str(), (unsigned int)dataLen, &buffer);
-                CCASSERT( buffer != nullptr, "CCParticleSystem: error decoding textureImageData");
+                std::string textureData = valueMap.at("textureImageData").asString();
+                auto dataLen = textureData.size();
+                if (dataLen != 0)
+                {
+                    unsigned char* buffer = nullptr;
+                    int decodeLen = cocos2d::base64Decode((unsigned char*)textureData.c_str(), (unsigned int)dataLen, &buffer);
+                    CCASSERT( buffer != nullptr, "CCParticleSystem: error decoding textureImageData");
 
-                unsigned char* deflated = nullptr;
-                ssize_t deflatedLen = cocos2d::ZipUtils::inflateMemory(buffer, decodeLen, &deflated);
-                CCASSERT( deflated != nullptr, "CCParticleSystem: error ungzipping textureImageData");
+                    unsigned char* deflated = nullptr;
+                    ssize_t deflatedLen = cocos2d::ZipUtils::inflateMemory(buffer, decodeLen, &deflated);
+                    CCASSERT( deflated != nullptr, "CCParticleSystem: error ungzipping textureImageData");
 
-                cocos2d::Image* image = new (std::nothrow) cocos2d::Image();
-                bool isOK = image->initWithImageData(deflated, deflatedLen);
-                CCASSERT(isOK, "CCParticleSystem: error init image with Data");
+                    cocos2d::Image* image = new (std::nothrow) cocos2d::Image();
+                    bool isOK = image->initWithImageData(deflated, deflatedLen);
+                    CCASSERT(isOK, "CCParticleSystem: error init image with Data");
 
-                cocos2d::Texture2D* texture = cocos2d::Director::getInstance()->getTextureCache()->addImage(image, textureName.c_str());
-                particleSystemGravity->setTexture(texture);
-                particleSystemRadius->setTexture(texture);
+                    cocos2d::Texture2D* texture = cocos2d::Director::getInstance()->getTextureCache()->addImage(image, textureName.c_str());
+                    particleSystemGravity->setTexture(texture);
+                    particleSystemRadius->setTexture(texture);
 
-                image->release();
+                    image->release();
+                }
             }
 
             auto mode = (cocos2d::ParticleSystem::Mode)valueMap["emitterType"].asInt();
@@ -264,10 +269,10 @@ namespace MelonGames {
             valueMap["tangentialAccelVariance"] = particleSystemGravity->getTangentialAccelVar();
             valueMap["rotationIsDir"] = particleSystemGravity->getRotationIsDir();
 
-            valueMap["maxRadius"] = particleSystemRadius->getStartRadius();
-            valueMap["maxRadiusVariance"] = particleSystemRadius->getStartRadiusVar();
-            valueMap["minRadius"] = particleSystemRadius->getEndRadius();
-            valueMap["minRadiusVariance"] = particleSystemRadius->getEndRadiusVar();
+            valueMap["minRadius"] = particleSystemRadius->getStartRadius();
+            valueMap["minRadiusVariance"] = particleSystemRadius->getStartRadiusVar();
+            valueMap["maxRadius"] = particleSystemRadius->getEndRadius();
+            valueMap["maxRadiusVariance"] = particleSystemRadius->getEndRadiusVar();
             valueMap["rotatePerSecond"] = particleSystemRadius->getRotatePerSecond();
             valueMap["rotatePerSecondVariance"] = particleSystemRadius->getRotatePerSecondVar();
 
