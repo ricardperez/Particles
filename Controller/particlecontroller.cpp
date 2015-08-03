@@ -56,6 +56,27 @@ namespace MelonGames {
             }
         }
 
+        void ParticleController::setUIDuration(QWidget* widget)
+        {
+            Q_ASSERT(scene);
+
+            auto getter = [this]()->float {
+                    return scene->getParticleSystem()->getDuration();
+            };
+            auto setter = [this](float val)->void{
+                if (val < 0.0f)
+                {
+                    val = -1.0f;
+                }
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->setDuration(val);
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->setDuration(val);
+
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::GRAVITY)->resetSystem();
+                scene->getParticleSystem(cocos2d::ParticleSystem::Mode::RADIUS)->resetSystem();
+            };
+            setUIElementFloat(widget, "duration", getter, setter);
+        }
+
         void ParticleController::setUIMaxParticles(QWidget* widget)
         {
             Q_ASSERT(scene);

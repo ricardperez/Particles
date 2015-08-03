@@ -76,6 +76,7 @@ void MainWindow::initParticleController()
     particleController = new MelonGames::Particles::ParticleController(this);
 
     particleController->setParticlesScene(scene);
+    particleController->setUIDuration(ui->durationFrame);
     particleController->setUIMaxParticles(ui->maxParticlesFrame);
     particleController->setUIPositionXVar(ui->posXVarFrame);
     particleController->setUIPositionYVar(ui->posYVarFrame);

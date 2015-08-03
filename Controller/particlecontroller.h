@@ -32,6 +32,7 @@ public:
     void setParticlesScene(ParticlesScene* scene);
     void reload();
 
+    void setUIDuration(QWidget* widget);
     void setUIMaxParticles(QWidget* widget);
     void setUIPositionXVar(QWidget* widget);
     void setUIPositionYVar(QWidget* widget);

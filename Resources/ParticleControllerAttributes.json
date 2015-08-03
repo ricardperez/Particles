@@ -1,5 +1,11 @@
 [
 	{
+		"id": "duration",
+		"min": -1,
+		"max": 10,
+		"sliderScale": 10.0
+	},
+	{
 		"id": "maxParticles",
 		"min": 0,
 		"max": 2000

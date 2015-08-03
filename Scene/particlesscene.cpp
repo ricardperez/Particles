@@ -131,6 +131,7 @@ namespace MelonGames
             {
                 particlesParentNode->addChild(particleSystem);
                 particleSystem->setPosition(cocos2d::Vec2::ZERO);
+                particleSystem->resetSystem();
             }
 
             particlesParentNode->setPosition(getContentSize() * 0.5f);
@@ -171,6 +172,10 @@ namespace MelonGames
             if (particlesParentNode)
             {
                 particlesParentNode->setPosition(touch->getLocation());
+                for (auto particleSystem : particleSystems)
+                {
+                    particleSystem->resetSystem();
+                }
             }
         }
 
